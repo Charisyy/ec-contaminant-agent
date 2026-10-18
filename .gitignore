@@ -16,3 +16,4 @@ data/*-wal
 data/*-shm
 .DS_Store
 Thumbs.db
+.model-settings-*

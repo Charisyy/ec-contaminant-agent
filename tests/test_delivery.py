@@ -2,6 +2,7 @@ import json,os,re,socket,subprocess,sys,time,urllib.error,urllib.request
 from pathlib import Path
 import pytest
 from ec_agent.db import PROJECT
+from ec_agent import __version__
 
 @pytest.fixture(scope='module')
 def local_server(tmp_path_factory):
@@ -20,7 +21,7 @@ def local_server(tmp_path_factory):
             if process.poll() is not None:raise RuntimeError(output.read_text(encoding='utf-8'))
             try:
                 with urllib.request.urlopen(url+'/api/health',timeout=1) as r:
-                    if json.load(r)['version']=='0.2.0':break
+                    if json.load(r)['version']==__version__:break
             except OSError:time.sleep(.2)
         else:raise RuntimeError('Local server failed to become ready')
         yield url
@@ -42,8 +43,9 @@ def test_web_api_three_workflows_and_validation(local_server):
     assert error.value.code==400
     with urllib.request.urlopen(local_server) as response:html=response.read().decode('utf-8')
     assert 'id="analysis-workflow"' in html
-    assert '一个助手，三条固定流程' in html
-    assert '目录页官能团来自历史缓存' in html
+    assert 'id="model-form"' in html
+    assert '目录官能团为历史缓存' in html
+    assert '一个助手，三条固定流程' not in html
     with urllib.request.urlopen(local_server+'/api/export?kind=clusters') as response:
         assert len(response.read())>1000
 

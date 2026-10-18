@@ -17,13 +17,15 @@ class EvidenceReview(BaseModel):
 
 def configured_llm():
     # Preserve the existing provider settings; no external call occurs here.
-    model=os.getenv('EC_AGENT_MODEL','').strip();key=os.getenv('EC_AGENT_API_KEY','').strip()
+    from .model_settings import runtime_settings
+    settings=runtime_settings()
+    model=settings['EC_AGENT_MODEL'];key=settings['EC_AGENT_API_KEY']
     if not model or not key:raise RuntimeError('尚未配置问答模型；三条固定工具工作流无需模型即可运行。')
     kwargs={'model':model,'api_key':key,'timeout':120,'max_retries':1}
     if model.removeprefix('openai/').startswith('gpt-6'):
         kwargs.update(api='responses',reasoning_effort='medium',store=False,auto_chain_reasoning=True)
     else:kwargs['temperature']=0
-    if os.getenv('EC_AGENT_BASE_URL'):kwargs['base_url']=os.environ['EC_AGENT_BASE_URL']
+    if settings['EC_AGENT_BASE_URL']:kwargs['base_url']=settings['EC_AGENT_BASE_URL']
     return LLM(**kwargs)
 
 def make_crew(db=DEFAULT_DB,llm=None,*,precomputed=None,output_dir=None):

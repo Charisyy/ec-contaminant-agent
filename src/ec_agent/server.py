@@ -1,5 +1,6 @@
 from __future__ import annotations
-import csv,io,json,os,sqlite3
+import csv,io,json,os,sqlite3,sys,logging,uuid,importlib.util
+from logging.handlers import RotatingFileHandler
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse,parse_qs
@@ -7,10 +8,21 @@ from .db import DEFAULT_DB,PROJECT,connect,stats,search,detail,dumps,now
 from .chemistry import nearest
 from .evidence import first_pass,risk_results
 from . import __version__
+from .model_settings import public_settings,save_settings,test_connection,model_error
 
-def serve(db=DEFAULT_DB,port=8765):
+def environment_status():
+    missing=[name for name in ('crewai','rdkit','pydantic','dotenv') if importlib.util.find_spec(name) is None]
+    return {'ready':not missing,'missing':missing,'interpreter':sys.executable}
+
+def create_server(db=DEFAULT_DB,port=8765):
     db=Path(db)
-    if not db.exists():raise FileNotFoundError('数据库尚未建立，请先运行全量工作流')
+    if not db.exists():raise FileNotFoundError('缺少 data/catalog.sqlite，请完整解压项目。')
+    log_dir=PROJECT/'outputs/logs';log_dir.mkdir(parents=True,exist_ok=True)
+    logger=logging.getLogger('ec_agent.http')
+    if not logger.handlers:
+        handler=RotatingFileHandler(log_dir/'server.log',maxBytes=1_000_000,backupCount=2,encoding='utf-8')
+        handler.setFormatter(logging.Formatter('%(asctime)s %(message)s'));logger.addHandler(handler)
+    logger.setLevel(logging.ERROR);logger.propagate=False
     class Handler(BaseHTTPRequestHandler):
         def send(self,value,status=200,content_type='application/json; charset=utf-8'):
             body=dumps(value).encode() if isinstance(value,(dict,list)) else value.encode() if isinstance(value,str) else value
@@ -18,13 +30,23 @@ def serve(db=DEFAULT_DB,port=8765):
             self.send_header('X-Content-Type-Options','nosniff');self.send_header('Cache-Control','no-store')
             self.end_headers();self.wfile.write(body)
         def log_message(self,format,*args):pass
+        def failure(self,exc):
+            request_id=uuid.uuid4().hex[:12]
+            # Never log request bodies, keys, provider responses, or exception messages.
+            logger.error('request=%s path=%s error=%s',request_id,urlparse(self.path).path,type(exc).__name__)
+            if isinstance(exc,ModuleNotFoundError):
+                return self.send({'error':'当前运行环境缺少 '+str(exc.name)+'。请运行 setup.cmd 完成安装，再用 start.cmd 启动。',
+                    'code':'missing_dependency','request_id':request_id},503)
+            return self.send({'error':'请求未完成，请查看 outputs/logs/server.log。日志编号：'+request_id,
+                'code':'request_failed','request_id':request_id},500)
         def do_GET(self):
             try:
                 if self.headers.get('Host') not in (f'127.0.0.1:{self.server.server_port}',f'localhost:{self.server.server_port}'):
                     return self.send({'error':'仅接受本地访问'},403)
                 u=urlparse(self.path);p=u.path;qs=parse_qs(u.query);q=lambda k,d='':qs.get(k,[d])[0]
                 if p=='/':return self.send((Path(__file__).parent/'web/index.html').read_text(encoding='utf-8'),content_type='text/html; charset=utf-8')
-                if p=='/api/health':return self.send({'ok':True,'application':'ec-catalog-agent','version':__version__,'agent_count':1,'workflows':['structure','neighbors','ecology'],'mode':'local','llm_ready':bool(os.getenv('EC_AGENT_MODEL') and os.getenv('EC_AGENT_API_KEY'))})
+                if p=='/api/health':return self.send({'ok':True,'application':'ec-catalog-agent','version':__version__,'agent_count':1,'workflows':['structure','neighbors','ecology'],'mode':'local','llm_ready':public_settings()['configured'],'environment':environment_status()})
+                if p=='/api/model-settings':return self.send(public_settings())
                 if p=='/api/export':
                     key=q('kind');allowed={'entities':'entities.csv','clusters':'clusters.csv','summary':'run_summary.json','triage':'triage.json'}
                     if key not in allowed:return self.send({'error':'Unknown export'},400)
@@ -70,16 +92,28 @@ def serve(db=DEFAULT_DB,port=8765):
                         return self.send(drawer.GetDrawingText(),content_type='image/svg+xml')
                 return self.send({'error':'Not found'},404)
             except (ValueError,TypeError):return self.send({'error':'请求参数无效'},400)
-            except Exception:return self.send({'error':'读取失败，请检查数据库或运行日志'},500)
+            except (BrokenPipeError,ConnectionResetError):pass
+            except Exception as exc:return self.failure(exc)
         def do_POST(self):
             # Loopback only, JSON only, same-origin writes. No arbitrary file or SQL interface.
-            expected=f'http://127.0.0.1:{self.server.server_port}'
+            host=self.headers.get('Host')
+            if host not in (f'127.0.0.1:{self.server.server_port}',f'localhost:{self.server.server_port}'):
+                return self.send({'error':'仅接受本地访问'},403)
+            expected='http://'+host
             if self.headers.get('Origin')!=expected:return self.send({'error':'仅接受本地页面操作'},403)
             if self.headers.get('Content-Type','').split(';')[0]!='application/json':return self.send({'error':'仅接受JSON'},415)
             try:
                 length=int(self.headers.get('Content-Length','0'))
                 if length<1 or length>16000:return self.send({'error':'请求大小无效'},400)
                 data=json.loads(self.rfile.read(length))
+                if not isinstance(data,dict):return self.send({'error':'请求内容必须是 JSON 对象'},400)
+                if self.path=='/api/model-settings':
+                    try:return self.send(save_settings(data))
+                    except ValueError as exc:return self.send({'error':str(exc)},400)
+                if self.path=='/api/model-test':
+                    try:return self.send(test_connection())
+                    except ValueError as exc:return self.send({'error':str(exc)},400)
+                    except Exception as exc:return self.send({'error':model_error(exc)},502)
                 if self.path=='/api/analyze':
                     query=str(data.get('query','')).strip()
                     if not query or len(query)>200:return self.send({'error':'请输入200字以内的名称、CAS或实体ID'},400)
@@ -96,15 +130,21 @@ def serve(db=DEFAULT_DB,port=8765):
                         con.execute('INSERT INTO review_events(entity_id,created_at,decision,note) VALUES(?,?,?,?)',(eid,now(),decision,note[:4000]))
                     return self.send({'ok':True})
                 if self.path=='/api/ask':
-                    if not os.getenv('EC_AGENT_MODEL') or not os.getenv('EC_AGENT_API_KEY'):return self.send({'error':'自由问答尚未配置模型。本地检索、官能团和聚类已可使用。'},409)
+                    if not public_settings()['configured']:return self.send({'error':'请先在“模型设置”中选择接口并保存 API Key。固定分析无需模型。','code':'model_not_configured'},409)
                     from .crew import answer_question
                     question=str(data.get('question','')).strip()
                     if not question or len(question)>2000:return self.send({'error':'问题为空或过长'},400)
                     try:return self.send(answer_question(question,db))
-                    except Exception:return self.send({'error':'模型调用或证据校验未通过；本地数据功能仍可使用。'},502)
+                    except ModuleNotFoundError:raise
+                    except Exception as exc:return self.send({'error':model_error(exc)},502)
                 return self.send({'error':'Not found'},404)
             except (ValueError,KeyError,TypeError):return self.send({'error':'请求内容无效'},400)
-    try:server=ThreadingHTTPServer(('127.0.0.1',int(port)),Handler)
+            except (BrokenPipeError,ConnectionResetError):pass
+            except Exception as exc:return self.failure(exc)
+    return ThreadingHTTPServer(('127.0.0.1',int(port)),Handler)
+
+def serve(db=DEFAULT_DB,port=8765):
+    try:server=create_server(db,port)
     except OSError:
         import urllib.request
         try:

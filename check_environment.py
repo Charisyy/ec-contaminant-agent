@@ -9,7 +9,10 @@ def main():
     import struct
     if struct.calcsize('P')!=8:raise RuntimeError('请安装64位 Python。')
     sys.path.insert(0,str(Path(__file__).parent/'src'))
-    import crewai,rdkit
+    try:
+        import crewai,rdkit,dotenv
+    except ImportError as exc:
+        raise RuntimeError('项目环境缺少依赖 '+str(exc.name)+'。请运行 setup.cmd 完成安装，并使用 start.cmd 启动。当前解释器：'+sys.executable) from None
     from ec_agent.db import DEFAULT_DB,connect_readonly,stats
     from ec_agent.policy import method_metadata
     with connect_readonly(DEFAULT_DB) as con:
