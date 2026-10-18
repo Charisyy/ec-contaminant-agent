@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ec-catalog-agent"
+version = "0.2.0"
+description = "Source-backed contaminant catalog and CrewAI chemistry workflow"
+requires-python = ">=3.11,<3.14"
+dependencies = ["crewai>=1.15.28,<2", "rdkit>=2026.9"]
+
+[project.scripts]
+ec-agent = "ec_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ec_agent = ["schema.sql", "web/*.html", "*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

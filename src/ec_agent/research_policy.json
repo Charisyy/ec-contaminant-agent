@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "scope": "ALL_CATALOG_ENTITIES",
+  "agent_count": 1,
+  "default_workflows": ["structure", "neighbors", "ecology"],
+  "workflows": {
+    "structure": {"label": "身份与结构画像", "tools": ["parse_catalog_structure", "detect_functional_groups"]},
+    "neighbors": {"label": "相似物与结构分组", "tools": ["parse_catalog_structure", "find_similar_entities", "inspect_structure_clusters"]},
+    "ecology": {"label": "生态证据整理", "tools": ["screen_ecological_evidence"]}
+  },
+  "shared_tools": ["catalog_search", "entity_structure_and_evidence"],
+  "similarity": {"algorithm": "Morgan/Tanimoto", "radius": 2, "bits": 2048, "chirality": true, "default_limit": 5},
+  "clustering": {"algorithm": "Butina", "distance": "1 - Tanimoto", "distance_threshold": 0.4, "reordering": true, "mode": "query_existing_only"},
+  "functional_groups": {"version": "1.1", "source": "functional_group_rules.json", "scope": "existing_project_rules_not_a_toxicity_classifier"},
+  "prediction": {"enabled": false, "reason": "候选毒性模型尚未完成本项目验证，不开放预测接口。"},
+  "agent_permissions": {"workflow_tool_only": true, "change_scientific_parameters": false, "write_database": false, "run_batch_jobs": false},
+  "references": {
+    "fingerprint": "https://doi.org/10.1021/ci100050t",
+    "butina": "https://doi.org/10.1021/ci9803381",
+    "rdkit": "https://www.rdkit.org/docs/GettingStartedInPython.html"
+  }
+}

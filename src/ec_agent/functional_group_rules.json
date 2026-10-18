@@ -1,0 +1,33 @@
+{
+  "version": "1.1",
+  "scope": "有限的结构片段规则，用于描述已提供结构；不构成完整官能团分类或毒性分类。",
+  "atom_indexing": "从 0 开始，按传入 SMILES 经 RDKit 解析后的原子顺序；不一定等于 canonical_smiles 的顺序。",
+  "rules": [
+    {"name": "羧酸", "smarts": "[CX3](=[OX1])[OX2H1]", "definition": "含未解离羧基；按匹配到的羧基片段计数。"},
+    {"name": "羧酸盐", "smarts": "[CX3](=[OX1])[O-]", "definition": "带负电的羧酸根；与未解离羧酸分开记录。"},
+    {"name": "酚", "smarts": "[OX2H][c]", "definition": "羟基直接连接芳香碳。"},
+    {"name": "醇", "smarts": "[OX2H][CX4]", "definition": "羟基连接四配位脂肪碳；不含酚和羧酸。"},
+    {"name": "酯", "smarts": "[CX3](=[OX1])[OX2][#6]", "definition": "C(=O)-O-C 片段；碳酸酯等也可能命中，不保证排他分类。"},
+    {"name": "醚", "smarts": "[OX2;!$([O][C,S,P]=O)]([#6])[#6]", "definition": "C-O-C 氧位点，排除氧直接连接 C/S/P=O 的情形。"},
+    {"name": "胺", "smarts": "[NX3;+0;$([N]-[#6]);!$(N-C=O);!$(N-S(=O)=O)]", "definition": "中性、三配位、至少连接一个碳的非芳香氮位点，排除酰胺和磺酰胺；不覆盖所有含氮官能团。硝基、氨和铵离子不计为本规则的胺。"},
+    {"name": "酰胺", "smarts": "[NX3][CX3](=[OX1])", "definition": "N-C(=O) 片段；脲等含多个此类连接时可多次命中。"},
+    {"name": "磺酰胺", "smarts": "[SX4](=[OX1])(=[OX1])[NX3]", "definition": "S(=O)2-N 片段。"},
+    {"name": "砜", "smarts": "[#6][SX4](=[OX1])(=[OX1])[#6]", "definition": "C-S(=O)2-C 片段。"},
+    {"name": "磺酸", "smarts": "[SX4](=[OX1])(=[OX1])[OX2H]", "definition": "未解离的 S(=O)2-OH 片段。"},
+    {"name": "磺酸盐", "smarts": "[SX4](=[OX1])(=[OX1])[O-]", "definition": "带负电的 S(=O)2-O 片段。"},
+    {"name": "磷酸酯", "smarts": "[PX4](=[OX1])([OX2][#6])([OX2])[OX2]", "definition": "含至少一个 P-O-C 连接的所示磷酸酯片段；不同质子化形式可能漏检。"},
+    {"name": "硝基", "smarts": "[N+](=O)[O-]", "definition": "RDKit 规范化后的电荷分离硝基片段。"},
+    {"name": "腈", "smarts": "[CX2]#[NX1]", "definition": "C≡N 片段。"},
+    {"name": "有机卤素", "smarts": "[#6][F,Cl,Br,I]", "definition": "按 C-F/Cl/Br/I 键计数，不是按含卤分子数计数；不等于 PFAS 判定。"},
+    {"name": "醌片段", "smarts": "[#6]1(=O)[#6]=[#6][#6](=O)[#6]=[#6]1", "definition": "所示对苯醌型六元环片段；不覆盖邻醌和所有稠环醌。"}
+  ],
+  "atom_features": [
+    {"name": "芳香原子", "definition": "RDKit 芳香性模型标记的原子数；不是芳香环数，也不是官能团个数。"}
+  ],
+  "limitations": [
+    "不同规则可重叠；未命中只代表这些规则未匹配，不代表物质没有官能团。",
+    "规则作用于完整输入结构；相似性和聚类使用单独的母体选择策略。",
+    "修改规则后需重启 Python 进程；历史数据库中的缓存不会自动重算。",
+    "官能团或结构相似性不能直接证明毒性或环境风险。"
+  ]
+}

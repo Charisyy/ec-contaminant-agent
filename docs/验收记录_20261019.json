@@ -1,0 +1,49 @@
+{
+  "release": "0.2.0",
+  "updated_on": "2026-10-19",
+  "architecture": "one_agent_three_fixed_workflows",
+  "tests": {
+    "tests": 32,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "delivery_recheck_tests": 3,
+  "archive_sha256": "6db882f968edecdc277797a59eeef43f1a312834b085bf9bbf020d1133694993",
+  "database_sha256": "1d31778b24e256ecdd70fec8b1d1603e2b132060b09e9ad49a9d3830a4bbd7c8",
+  "original_archive_unchanged": true,
+  "bundled_database_unchanged": true,
+  "unchanged_input_and_database_files": [
+    "inputs/catalog_snapshot.json",
+    "inputs/catalog_source.xlsx",
+    "inputs/ecotoxicity_template.csv",
+    "inputs/epa_benchmarks.json",
+    "inputs/epa_benchmarks_source.html",
+    "inputs/exposures_template.csv",
+    "inputs/pubchem_provenance.json.gz",
+    "data/catalog.sqlite"
+  ],
+  "catalog_statistics": {
+    "entities": 1216,
+    "cas_present": 1116,
+    "structure_records": 1108,
+    "experiment_candidates": 47,
+    "measured": 172,
+    "evidence_entities": 136,
+    "evidence_records": 1181,
+    "exposure_records": 0
+  },
+  "rulebook_version": "1.1",
+  "rulebook_origin": "existing_project_revision_no_new_scientific_rules",
+  "live_chemistry_source_unchanged_and_carried_forward": true,
+  "paid_model_api_calls": false,
+  "remote_model_quality_validated": false,
+  "fresh_computer_dependency_installation_tested": false,
+  "visual_browser_review_completed": false,
+  "known_limits": [
+    "原型未接入毒性预测模型",
+    "真实自然语言模型尚未验证",
+    "首次安装需要Python3.12及网络",
+    "浏览器连接工具不可用；已完成HTTP与JavaScript语法检查，未完成视觉验收"
+  ]
+}

@@ -1,0 +1,19 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json -text
+*.mmd text eol=lf
+*.html text eol=lf
+*.toml text eol=lf
+*.cmd text eol=crlf
+*.sqlite binary
+*.xlsx binary
+*.gz binary
+*.png binary
+inputs/** -text
+reference_outputs/** -text
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.env.example text eol=lf
+*.sql text eol=lf
+*.txt text eol=lf

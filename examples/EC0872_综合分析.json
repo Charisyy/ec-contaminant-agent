@@ -1,0 +1,585 @@
+{
+  "run_id": "d13b6be3-234c-4f4e-b008-705be41b0aec",
+  "created_at": "2026-10-18T16:55:53.260285+00:00",
+  "framework": "CrewAI Flow",
+  "status": "completed",
+  "execution_mode": "deterministic_tools",
+  "llm_used": false,
+  "query": "EC0872",
+  "entity_id": "EC0872",
+  "workflows": [
+    "structure",
+    "neighbors",
+    "ecology"
+  ],
+  "workflow_statuses": {
+    "structure": "completed",
+    "neighbors": "completed",
+    "ecology": "completed"
+  },
+  "selection": {
+    "total": 1,
+    "choices": [
+      {
+        "entity_id": "EC0872",
+        "name": "6PPD-醌（6PPD-Q）",
+        "cas": "2754428-18-5"
+      }
+    ]
+  },
+  "methods": {
+    "policy_version": "1.0",
+    "policy_sha256": "834775d12f0da7b1fdf8048d69728958b7eaf7056f34436699d04406c6a560a9",
+    "rdkit_version": "2026.09.1",
+    "rules_version": "1.1",
+    "rulebook_sha256": "9c628ecd410f9e8c5a67b053ee0f389c266bc2075259c335d8cfebabde4cf014",
+    "parent_policy": "largest carbon-containing fragment; tie-break by canonical isomeric SMILES; retain charge, tautomers and stereo",
+    "similarity": {
+      "algorithm": "Morgan/Tanimoto",
+      "radius": 2,
+      "bits": 2048,
+      "chirality": true,
+      "default_limit": 5
+    },
+    "clustering": {
+      "algorithm": "Butina",
+      "distance": "1 - Tanimoto",
+      "distance_threshold": 0.4,
+      "reordering": true,
+      "mode": "query_existing_only"
+    },
+    "prediction_enabled": false
+  },
+  "provenance": {
+    "identity_status": "规范别名与数据库记录已核对",
+    "human_review": "unreviewed",
+    "selected_structure_id": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+    "sources": [
+      {
+        "kind": "structure",
+        "record_id": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+        "url": "https://pubchem.ncbi.nlm.nih.gov/compound/154926030"
+      }
+    ]
+  },
+  "warnings": [
+    "身份尚未人工确认：结构计算以当前选定结构为条件，数据库匹配不等于身份确认。",
+    "本次使用规则 1.1 重新计算；数据库官能团缓存为历史版本，未覆盖或混用。"
+  ],
+  "skipped_steps": [],
+  "trace": [
+    {
+      "step": 1,
+      "tool": "catalog_search",
+      "arguments": {
+        "query": "EC0872"
+      },
+      "status": "completed",
+      "executed": true,
+      "elapsed_ms": 30.51,
+      "output_sha256": "1e87b4eafae0986f8c92bc47ddebe4f896326e922c856f2b9fcafcb1ad5424e5"
+    },
+    {
+      "step": 2,
+      "tool": "entity_structure_and_evidence",
+      "arguments": {
+        "entity_id": "EC0872"
+      },
+      "status": "completed",
+      "executed": true,
+      "elapsed_ms": 9.66,
+      "output_sha256": "36e46a15361ab8659f6dac60a0d944c0201c20517a0051ef5d7aa1d9cd26b247"
+    },
+    {
+      "step": 3,
+      "tool": "parse_catalog_structure",
+      "arguments": {
+        "entity_id": "EC0872"
+      },
+      "status": "parsed",
+      "executed": true,
+      "elapsed_ms": 77.33,
+      "output_sha256": "02b45ed4db705f3928054fbcf6eed50aa6c640f4e902e32094d2726cb2718eab"
+    },
+    {
+      "step": 4,
+      "tool": "detect_functional_groups",
+      "arguments": {
+        "entity_id": "EC0872"
+      },
+      "status": "parsed",
+      "executed": true,
+      "elapsed_ms": 7.98,
+      "output_sha256": "3d03317e7380f7c65d48363dffba96865636c962ee0906f8f5f571cd28cdac7e"
+    },
+    {
+      "step": 5,
+      "tool": "find_similar_entities",
+      "arguments": {
+        "entity_id": "EC0872",
+        "limit": 5
+      },
+      "status": "completed",
+      "executed": true,
+      "elapsed_ms": 440.05,
+      "output_sha256": "1a5235c79cca82f5f336c6b6bc0fbd09f4811f3a05157cdd9f13ef9b19619ffa"
+    },
+    {
+      "step": 6,
+      "tool": "inspect_structure_clusters",
+      "arguments": {
+        "entity_id": "EC0872",
+        "distance_threshold": 0.4
+      },
+      "status": "completed",
+      "executed": true,
+      "elapsed_ms": 33.8,
+      "output_sha256": "48fae116a76bfc767ad3254f80a0353efc06e46dac9d59dbdc7f75209ad05c00"
+    },
+    {
+      "step": 7,
+      "tool": "screen_ecological_evidence",
+      "arguments": {
+        "entity_id": "EC0872"
+      },
+      "status": "completed",
+      "executed": true,
+      "elapsed_ms": 2.06,
+      "output_sha256": "5048676f42b59b47cff267bfc178278a9769b98af16de022a3ac37a8a983c9bd"
+    }
+  ],
+  "results": {
+    "identity": {
+      "id": "EC0872",
+      "name": "6PPD-醌（6PPD-Q）",
+      "original_name": "6PPD-醌（6PPD-Q）",
+      "cas": "2754428-18-5",
+      "original_cas": null,
+      "english_name": "2-((4-Methylpentan-2-yl)amino)-5-(phenylamino)cyclohexa-2,5-diene-1,4-dione",
+      "category": "橡胶助剂及相关转化产物",
+      "subcategory": "PPD醌类",
+      "entity_type": "单体/命名实体",
+      "measured": 0,
+      "experiment_candidate": 1,
+      "procurement_status": "unknown",
+      "identity_status": "规范别名与数据库记录已核对",
+      "original_review": "按现有信息归类",
+      "issue": "无自动检测异常；仍需人工审阅",
+      "human_review": "unreviewed",
+      "source_databases": "自行查找",
+      "source_record_ids": "自行查找:103",
+      "source_record_count": 1,
+      "original_row": 873,
+      "selected_structure_id": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+      "import_id": "677f35863f330d69e66b71bf",
+      "updated_at": "2026-10-17T16:31:45.970627+00:00",
+      "payload": {
+        "实体ID": "EC0872",
+        "归类用名称": "6PPD-醌（6PPD-Q）",
+        "CAS/候选CAS": "2754428-18-5",
+        "一级类别": "橡胶助剂及相关转化产物",
+        "二级类别": "PPD醌类",
+        "实体类型": "单体/命名实体",
+        "数据库数量": 1,
+        "来源数据库": "自行查找",
+        "来源记录数": 1,
+        "来源记录ID": "自行查找:103",
+        "混标对应": "A",
+        "复核状态": "按现有信息归类",
+        "已测标记": "否",
+        "原始CAS": "",
+        "CAS补充候选": "2754428-18-5",
+        "CAS补充依据": "规范名称与PubChem记录人工核对；原CAS为空",
+        "候选CID数": 1,
+        "PubChem CID": 154926030,
+        "PubChem名称": "2-((4-Methylpentan-2-yl)amino)-5-(phenylamino)cyclohexa-2,5-diene-1,4-dione",
+        "分子式": "C18H22N2O2",
+        "分子量(g/mol)": 298.4,
+        "数据库SMILES": "CC(C)CC(C)NC1=CC(=O)C(=CC1=O)NC2=CC=CC=C2",
+        "InChI": "InChI=1S/C18H22N2O2/c1-12(2)9-13(3)19-15-10-18(22)16(11-17(15)21)20-14-7-5-4-6-8-14/h4-8,10-13,19-20H,9H2,1-3H3",
+        "InChIKey": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+        "结构匹配状态": "规范别名与数据库记录已核对",
+        "SMILES解析状态": "RDKit解析通过",
+        "结构适用性": "可做结构计算；毒性模型需核查适用域",
+        "官能团初筛": "芳香环；胺；醌片段",
+        "结构重复组": null,
+        "待核实事项": "无自动检测异常；仍需人工审阅",
+        "结构来源URL": "https://pubchem.ncbi.nlm.nih.gov/compound/154926030",
+        "检索日期": "2026-10-17",
+        "CAS来源URL": "https://pubchem.ncbi.nlm.nih.gov/compound/154926030",
+        "人工确认": "未审阅",
+        "原始名称": "6PPD-醌（6PPD-Q）",
+        "名称修订依据": "保留原名称；规范英文名另列"
+      },
+      "structures": [
+        {
+          "id": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "inchikey": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "smiles": "CC(C)CC(C)NC1=CC(=O)C(=CC1=O)NC2=CC=CC=C2",
+          "inchi": "InChI=1S/C18H22N2O2/c1-12(2)9-13(3)19-15-10-18(22)16(11-17(15)21)20-14-7-5-4-6-8-14/h4-8,10-13,19-20H,9H2,1-3H3",
+          "formula": "C18H22N2O2",
+          "molecular_weight": 298.4,
+          "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "parent_smiles": "CC(C)CC(C)NC1=CC(=O)C(Nc2ccccc2)=CC1=O",
+          "clustering_eligible": 1,
+          "analysis_status": "parsed",
+          "exclusion_reason": "",
+          "role": "selected",
+          "cid": 154926030,
+          "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/154926030",
+          "features": {
+            "status": "parsed",
+            "eligible": true,
+            "reason": "",
+            "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+            "parent_smiles": "CC(C)CC(C)NC1=CC(=O)C(Nc2ccccc2)=CC1=O",
+            "rdkit_version": "2026.09.1",
+            "rules_version": "1.0",
+            "parent_policy": "largest carbon-containing fragment; tie-break by canonical isomeric SMILES; retain charge, tautomers and stereo",
+            "canonical_smiles": "CC(C)CC(C)NC1=CC(=O)C(Nc2ccccc2)=CC1=O",
+            "computed_inchikey": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+            "formula": "C18H22N2O2",
+            "molecular_weight": 298.38599999999997,
+            "exact_mass": 298.168127944,
+            "estimated_logp": 3.042300000000001,
+            "tpsa": 58.2,
+            "hbd": 2,
+            "hba": 4,
+            "rotatable_bonds": 6,
+            "formal_charge": 0,
+            "fragment_count": 1,
+            "heavy_atoms": 22,
+            "functional_groups": {
+              "胺": {
+                "count": 2,
+                "atom_matches": [
+                  [
+                    6
+                  ],
+                  [
+                    15
+                  ]
+                ]
+              },
+              "醌片段": {
+                "count": 1,
+                "atom_matches": [
+                  [
+                    9,
+                    10,
+                    8,
+                    7,
+                    13,
+                    14,
+                    12,
+                    11
+                  ]
+                ]
+              },
+              "芳香原子": {
+                "count": 6,
+                "atom_indices": [
+                  16,
+                  17,
+                  18,
+                  19,
+                  20,
+                  21
+                ]
+              }
+            },
+            "flags": []
+          }
+        }
+      ],
+      "evidence": [],
+      "exposures": [],
+      "clusters": [
+        {
+          "run_id": "f7126654ac0398c1d3a8",
+          "cluster_id": "C0709",
+          "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "center_parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "center_similarity": 1.0
+        },
+        {
+          "run_id": "6fa75ee82b0ac013d5f8",
+          "cluster_id": "C0014",
+          "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "center_parent_key": "GETDOINCEIMJDH-UHFFFAOYSA-N",
+          "center_similarity": 0.6060606060606061
+        },
+        {
+          "run_id": "89c4f5b990afb9be3302",
+          "cluster_id": "C0081",
+          "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+          "center_parent_key": "ZQAFKGDWLSVTRI-UHFFFAOYSA-N",
+          "center_similarity": 0.6944444444444444
+        }
+      ],
+      "related_entities": [],
+      "review_history": [],
+      "risk": {
+        "status": "identity_review_required",
+        "ratios": [],
+        "reason": "尚未人工确认化学身份；不输出定量风险结论"
+      }
+    },
+    "structure": {
+      "name": "6PPD-醌（6PPD-Q）",
+      "human_review": "unreviewed",
+      "entity_type": "单体/命名实体",
+      "smiles": "CC(C)CC(C)NC1=CC(=O)C(=CC1=O)NC2=CC=CC=C2",
+      "inchikey": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+      "entity_id": "EC0872",
+      "status": "parsed",
+      "calculation": {
+        "status": "parsed",
+        "eligible": true,
+        "reason": "",
+        "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+        "parent_smiles": "CC(C)CC(C)NC1=CC(=O)C(Nc2ccccc2)=CC1=O",
+        "rdkit_version": "2026.09.1",
+        "rules_version": "1.1",
+        "parent_policy": "largest carbon-containing fragment; tie-break by canonical isomeric SMILES; retain charge, tautomers and stereo",
+        "input_smiles": "CC(C)CC(C)NC1=CC(=O)C(=CC1=O)NC2=CC=CC=C2",
+        "atom_indexing": "从 0 开始，按传入 SMILES 经 RDKit 解析后的原子顺序；不一定等于 canonical_smiles 的顺序。",
+        "canonical_smiles": "CC(C)CC(C)NC1=CC(=O)C(Nc2ccccc2)=CC1=O",
+        "computed_inchikey": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+        "formula": "C18H22N2O2",
+        "molecular_weight": 298.38599999999997,
+        "exact_mass": 298.168127944,
+        "estimated_logp": 3.042300000000001,
+        "tpsa": 58.2,
+        "hbd": 2,
+        "hba": 4,
+        "rotatable_bonds": 6,
+        "formal_charge": 0,
+        "fragment_count": 1,
+        "heavy_atoms": 22,
+        "functional_groups": {
+          "胺": {
+            "count": 2,
+            "atom_matches": [
+              [
+                6
+              ],
+              [
+                15
+              ]
+            ],
+            "kind": "substructure",
+            "smarts": "[NX3;+0;$([N]-[#6]);!$(N-C=O);!$(N-S(=O)=O)]",
+            "definition": "中性、三配位、至少连接一个碳的非芳香氮位点，排除酰胺和磺酰胺；不覆盖所有含氮官能团。硝基、氨和铵离子不计为本规则的胺。"
+          },
+          "醌片段": {
+            "count": 1,
+            "atom_matches": [
+              [
+                9,
+                10,
+                8,
+                7,
+                13,
+                14,
+                12,
+                11
+              ]
+            ],
+            "kind": "substructure",
+            "smarts": "[#6]1(=O)[#6]=[#6][#6](=O)[#6]=[#6]1",
+            "definition": "所示对苯醌型六元环片段；不覆盖邻醌和所有稠环醌。"
+          },
+          "芳香原子": {
+            "count": 6,
+            "atom_indices": [
+              16,
+              17,
+              18,
+              19,
+              20,
+              21
+            ],
+            "kind": "atom_feature",
+            "definition": "RDKit 芳香性模型标记的原子数；不是芳香环数，也不是官能团个数。"
+          }
+        },
+        "flags": []
+      },
+      "identifier_consistent": true,
+      "cached_rules_version": "1.0",
+      "cache_status": "historical"
+    },
+    "functional_groups": {
+      "entity_id": "EC0872",
+      "status": "parsed",
+      "rules_version": "1.1",
+      "functional_groups": {
+        "胺": {
+          "count": 2,
+          "atom_matches": [
+            [
+              6
+            ],
+            [
+              15
+            ]
+          ],
+          "kind": "substructure",
+          "smarts": "[NX3;+0;$([N]-[#6]);!$(N-C=O);!$(N-S(=O)=O)]",
+          "definition": "中性、三配位、至少连接一个碳的非芳香氮位点，排除酰胺和磺酰胺；不覆盖所有含氮官能团。硝基、氨和铵离子不计为本规则的胺。"
+        },
+        "醌片段": {
+          "count": 1,
+          "atom_matches": [
+            [
+              9,
+              10,
+              8,
+              7,
+              13,
+              14,
+              12,
+              11
+            ]
+          ],
+          "kind": "substructure",
+          "smarts": "[#6]1(=O)[#6]=[#6][#6](=O)[#6]=[#6]1",
+          "definition": "所示对苯醌型六元环片段；不覆盖邻醌和所有稠环醌。"
+        },
+        "芳香原子": {
+          "count": 6,
+          "atom_indices": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "atom_feature",
+          "definition": "RDKit 芳香性模型标记的原子数；不是芳香环数，也不是官能团个数。"
+        }
+      },
+      "interpretation": "片段规则可能重叠；命中不代表毒性判定。"
+    },
+    "similarity": {
+      "entity_id": "EC0872",
+      "status": "completed",
+      "scope": "all eligible catalog entities",
+      "reason": "",
+      "parameters": {
+        "algorithm": "Morgan/Tanimoto",
+        "radius": 2,
+        "bits": 2048,
+        "chirality": true,
+        "default_limit": 5
+      },
+      "parent_policy": "largest carbon-containing fragment; tie-break by canonical isomeric SMILES; retain charge, tautomers and stereo",
+      "neighbors": [
+        {
+          "id": "EC1162",
+          "name": "2-(异丙基氨基)-5-(苯氨基)环己-2,5-二烯-1,4-二酮（IPPD醌）",
+          "cas": "68054-73-9",
+          "similarity": 0.6944444444444444,
+          "same_parent": false
+        },
+        {
+          "id": "EC1161",
+          "name": "N，N-二甲基甲酰胺中DPPD-醌溶液 DPPD-Q",
+          "cas": "3421-08-7",
+          "similarity": 0.6060606060606061,
+          "same_parent": false
+        },
+        {
+          "id": "EC1110",
+          "name": "N-(1,3-二甲基丁基)-N'-苯基对苯二胺（N-(1,3-dimethylbutyl)-N'-phenyl-p-phenylenediamine）",
+          "cas": "793-24-8",
+          "similarity": 0.5945945945945946,
+          "same_parent": false
+        },
+        {
+          "id": "EC1171",
+          "name": "2-(环己基氨基)-5-(苯基氨基)环己基-2,5-二烯-1,4-二酮",
+          "cas": "68054-78-4",
+          "similarity": 0.4444444444444444,
+          "same_parent": false
+        },
+        {
+          "id": "EC1160",
+          "name": "N-(1,4-二甲基戊基)-N'-苯基对苯二胺 7PPD",
+          "cas": "3081-01-4",
+          "similarity": 0.42857142857142855,
+          "same_parent": false
+        }
+      ]
+    },
+    "cluster": {
+      "entity_id": "EC0872",
+      "status": "completed",
+      "run_id": "6fa75ee82b0ac013d5f8",
+      "parameters": {
+        "algorithm": "Butina",
+        "distance": "1 - Tanimoto",
+        "distance_threshold": 0.4,
+        "radius": 2,
+        "bits": 2048,
+        "chirality": true,
+        "reordering": true,
+        "rdkit": "2026.09.1",
+        "parent_policy": "largest carbon-containing fragment; tie-break by canonical isomeric SMILES; retain charge, tautomers and stereo",
+        "scope": "all eligible catalog entities",
+        "interpretation": "center similarity threshold; not an all-pairs guarantee"
+      },
+      "created_at": "2026-10-17T14:31:31.163524+00:00",
+      "input_digest": "6ac13827af1d971ff8e51cdadad705dc10deac6dcce137bfbb19d0fe94af08f5",
+      "cache_status": "current",
+      "mismatched_fields": [],
+      "reason": "",
+      "membership": {
+        "run_id": "6fa75ee82b0ac013d5f8",
+        "cluster_id": "C0014",
+        "parent_key": "UBMGKRIXKUIXFQ-UHFFFAOYSA-N",
+        "center_parent_key": "GETDOINCEIMJDH-UHFFFAOYSA-N",
+        "center_similarity": 0.6060606060606061
+      },
+      "member_count": 4,
+      "members": [
+        {
+          "id": "EC0872",
+          "name": "6PPD-醌（6PPD-Q）",
+          "center_similarity": 0.6060606060606061
+        },
+        {
+          "id": "EC1161",
+          "name": "N，N-二甲基甲酰胺中DPPD-醌溶液 DPPD-Q",
+          "center_similarity": 1.0
+        },
+        {
+          "id": "EC1162",
+          "name": "2-(异丙基氨基)-5-(苯氨基)环己-2,5-二烯-1,4-二酮（IPPD醌）",
+          "center_similarity": 0.7142857142857143
+        },
+        {
+          "id": "EC1171",
+          "name": "2-(环己基氨基)-5-(苯基氨基)环己基-2,5-二烯-1,4-二酮",
+          "center_similarity": 0.625
+        }
+      ],
+      "truncated": false
+    },
+    "ecology": {
+      "entity_id": "EC0872",
+      "status": "completed",
+      "evidence": [],
+      "risk": {
+        "status": "identity_review_required",
+        "ratios": [],
+        "reason": "尚未人工确认化学身份；不输出定量风险结论"
+      },
+      "risk_score": null
+    }
+  },
+  "risk_score": null,
+  "artifact_name": "d13b6be3-234c-4f4e-b008-705be41b0aec/result.json"
+}
