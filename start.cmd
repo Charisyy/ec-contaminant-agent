@@ -10,7 +10,7 @@ if not exist "data\catalog.sqlite" goto missing_database
 if errorlevel 1 pause
 exit /b
 :missing_environment
-echo 请先双击 setup.cmd 安装环境。具体步骤见“师兄使用说明.md”。
+echo 请先双击 setup.cmd 安装环境。具体步骤见 README.md。
 pause
 exit /b 1
 :missing_database

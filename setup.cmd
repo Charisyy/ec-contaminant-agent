@@ -47,7 +47,7 @@ echo 未找到本项目需要的 Python 3.12（64位）。已有其他版本不�
 echo 以下是 Python 启动器识别的版本：
 py -0p 2>nul
 echo 本项目尚未验证 Python 3.14；不要卸载原有版本，可另外安装 3.12。
-echo 请按“师兄使用说明.md”安装对应版本，再重新运行。
+echo 请按 README.md 安装对应版本，再重新运行。
 if /i "%~1"=="--check" exit /b 1
 pause
 exit /b 1
