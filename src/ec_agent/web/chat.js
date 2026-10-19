@@ -34,6 +34,7 @@
     return {stored_view:'conversation_summary',entity_ids:data.entity_ids||[],answer:data.answer||'',
       supported_findings:data.supported_findings||[],source_urls:data.source_urls||[],missing_inputs:data.missing_inputs||[],
       risk_score:data.risk_score??null,execution_mode:data.execution_mode,llm_used:data.llm_used,
+      model_answer_accepted:data.model_answer_accepted,model_validation:data.model_validation,
       verification_scope:data.verification_scope,workflow_runs:(data.workflow_runs||[]).map(run=>({
         run_id:run.run_id,entity_id:run.entity_id,status:run.status,query:run.query,workflows:run.workflows,
         selection:run.selection,trace:run.trace,methods:run.methods,provenance:run.provenance,
@@ -118,7 +119,7 @@
       if(message.id===pendingId)return `<article class="chat-message assistant">${header}<div class="chat-assistant-content"><div class="chat-pending"><span class="chat-pending-dot"></span><span id="chat-pending-text">请求已提交，等待模型与工具返回…</span></div></div></article>`;
       if(message.error)return `<article class="chat-message assistant">${header}<div class="chat-assistant-content"><div class="chat-error">${esc(message.text)}<br><button data-chat-retry="${esc(message.id)}">重新填写问题</button><button data-chat-settings>检查模型设置</button></div></div></article>`;
       const data=message.data||{},next=followups(data);
-      return `<article class="chat-message assistant">${header}<div class="chat-assistant-content">${data.execution_mode==='local_help'?'<div class="chat-response-note">本地使用帮助 · 未调用模型</div>':''}${markdown(message.text)}${data.missing_inputs?.length?`<div class="chat-response-gap"><strong>需要补充的资料</strong><ul>${data.missing_inputs.map(item=>'<li>'+esc(item)+'</li>').join('')}</ul></div>`:''}${evidenceMarkup(data)}<div class="chat-message-actions"><button data-chat-copy="${esc(message.id)}">复制回答</button><button data-chat-download="${esc(message.id)}" id="${message.id===value.messages[value.messages.length-1]?.id?'download-answer':'download-'+esc(message.id)}">导出本轮记录</button></div>${next.length?`<div class="chat-followups"><span>可以继续问</span>${next.map((item,index)=>`<button data-chat-followup="${esc(message.id)}" data-followup-index="${index}">${esc(item.label)} →</button>`).join('')}</div>`:''}</div></article>`;
+      return `<article class="chat-message assistant">${header}<div class="chat-assistant-content">${data.execution_mode==='local_help'?'<div class="chat-response-note">本地使用帮助 · 未调用模型</div>':data.execution_mode==='deterministic_fallback'?'<div class="chat-response-note">模型解释未通过校验，以下为已执行工具的结果整理。</div>':''}${markdown(message.text)}${data.missing_inputs?.length?`<div class="chat-response-gap"><strong>需要补充的资料</strong><ul>${data.missing_inputs.map(item=>'<li>'+esc(item)+'</li>').join('')}</ul></div>`:''}${evidenceMarkup(data)}<div class="chat-message-actions"><button data-chat-copy="${esc(message.id)}">复制回答</button><button data-chat-download="${esc(message.id)}" id="${message.id===value.messages[value.messages.length-1]?.id?'download-answer':'download-'+esc(message.id)}">导出本轮记录</button></div>${next.length?`<div class="chat-followups"><span>可以继续问</span>${next.map((item,index)=>`<button data-chat-followup="${esc(message.id)}" data-followup-index="${index}">${esc(item.label)} →</button>`).join('')}</div>`:''}</div></article>`;
     }).join('');
     document.querySelectorAll('[data-chat-copy]').forEach(button=>button.onclick=async()=>{
       const message=value.messages.find(item=>item.id===button.dataset.chatCopy);
@@ -181,7 +182,7 @@
     try{
       const payload={question};if(value.entity?.id)payload.context_entity_id=value.entity.id;
       const data=await post('/api/ask',payload);message.text=data.answer;message.data=data;
-      rawResults.set(message.id,data);updateEntity(value,data);$('#chat-live-status').textContent=data.execution_mode==='local_help'?'本地回复已完成':'本轮问答已完成';
+      rawResults.set(message.id,data);updateEntity(value,data);$('#chat-live-status').textContent=data.execution_mode==='local_help'?'本地回复已完成':data.execution_mode==='deterministic_fallback'?'模型解释未通过校验，已展示实际工具结果':'本轮问答已完成';
     }catch(error){message.text=error.message;message.error=true;message.question=question;$('#chat-live-status').textContent='本轮请求未完成';}
     finally{clearInterval(interval);busy=false;pendingId=null;value.updatedAt=Date.now();persist();render();scrollToLatest();}
   }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "real_model_status": "not_run",
+  "purpose": "验收问题与离线基线定义；真实服务执行结果单独记录。",
   "cases": [
     {"id":"M01","question":"核查 EC0011 的名称、CAS、结构来源并分析官能团。","query":"EC0011","workflows":["structure"],"status":"completed","entity_id":"EC0011","purpose":"唯一实体与结构画像"},
     {"id":"M02","question":"分析双酚的官能团，先列出目录候选供我选择。","query":"双酚","workflows":["structure"],"status":"needs_entity_selection","entity_id":null,"purpose":"多个候选时停止，不自行挑选"},
