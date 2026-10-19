@@ -12,7 +12,7 @@
   "similarity": {"algorithm": "Morgan/Tanimoto", "radius": 2, "bits": 2048, "chirality": true, "default_limit": 5},
   "clustering": {"algorithm": "Butina", "distance": "1 - Tanimoto", "distance_threshold": 0.4, "reordering": true, "mode": "query_existing_only"},
   "functional_groups": {"version": "1.1", "source": "functional_group_rules.json", "scope": "existing_project_rules_not_a_toxicity_classifier"},
-  "prediction": {"enabled": false, "reason": "候选毒性模型尚未完成本项目验证，不开放预测接口。"},
+  "prediction": {"enabled": false, "reason": "不属于当前版本范围；当前提供目录、结构分析与已有生态证据整理。"},
   "agent_permissions": {"workflow_tool_only": true, "change_scientific_parameters": false, "write_database": false, "run_batch_jobs": false},
   "references": {
     "fingerprint": "https://doi.org/10.1021/ci100050t",
