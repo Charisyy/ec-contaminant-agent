@@ -46,7 +46,7 @@ def test_web_api_three_workflows_and_validation(local_server):
     assert 'id="model-form"' in html
     assert '目录官能团为历史缓存' in html
     assert '一个助手，三条固定流程' not in html
-    for asset,kind in (('/chat.js','javascript'),('/chat.css','css')):
+    for asset,kind in (('/chat.js','javascript'),('/chat.css','css'),('/filters.js','javascript'),('/filters.css','css')):
         with urllib.request.urlopen(local_server+asset) as response:
             assert kind in response.headers['Content-Type'] and len(response.read())>1000
     with urllib.request.urlopen(local_server+'/api/export?kind=clusters') as response:
@@ -59,7 +59,7 @@ def test_web_javascript_syntax(tmp_path):
     html=(PROJECT/'src/ec_agent/web/index.html').read_text(encoding='utf-8')
     script=tmp_path/'web.js'
     script.write_text('\n'.join(re.findall(r'<script>(.*?)</script>',html,re.S)),encoding='utf-8')
-    for source in (script,PROJECT/'src/ec_agent/web/chat.js'):
+    for source in (script,PROJECT/'src/ec_agent/web/chat.js',PROJECT/'src/ec_agent/web/filters.js'):
         result=subprocess.run([node,'--check',str(source)],capture_output=True,text=True)
         assert result.returncode==0,result.stderr
 

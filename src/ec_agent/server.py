@@ -52,7 +52,7 @@ def create_server(db=DEFAULT_DB,port=8765):
                     return self.send({'error':'仅接受本地访问'},403)
                 u=urlparse(self.path);p=u.path;qs=parse_qs(u.query);q=lambda k,d='':qs.get(k,[d])[0]
                 if p=='/':return self.send((Path(__file__).parent/'web/index.html').read_text(encoding='utf-8'),content_type='text/html; charset=utf-8')
-                if p in ('/chat.js','/chat.css'):
+                if p in ('/chat.js','/chat.css','/filters.js','/filters.css'):
                     return self.send((Path(__file__).parent/'web'/p[1:]).read_text(encoding='utf-8'),content_type='application/javascript; charset=utf-8' if p.endswith('.js') else 'text/css; charset=utf-8')
                 if p=='/api/health':return self.send({'ok':True,'application':'ec-catalog-agent','version':__version__,'agent_count':1,'workflows':['structure','neighbors','ecology'],'mode':'local','llm_ready':public_settings()['configured'],'environment':environment_status()})
                 if p=='/api/model-settings':return self.send(public_settings())
@@ -75,7 +75,7 @@ def create_server(db=DEFAULT_DB,port=8765):
                     return self.send(file.read_bytes(),content_type='text/csv; charset=utf-8' if file.suffix=='.csv' else 'application/json; charset=utf-8')
                 with connect(db) as con:
                     if p=='/api/stats':return self.send(stats(con))
-                    if p=='/api/entities':return self.send(search(con,**{k:q(k) for k in ('q','category','experiment','measured','structure','run_id','cluster','group')},page=int(q('page','1')),limit=int(q('limit','50'))))
+                    if p=='/api/entities':return self.send(search(con,**{k:q(k) for k in ('q','run_id','cluster','group')},**{k:qs.get(k,[]) for k in ('category','experiment','measured','structure')},page=int(q('page','1')),limit=int(q('limit','50'))))
                     if p=='/api/triage':return self.send(first_pass(con))
                     if p=='/api/clusters':
                         run=q('run_id')

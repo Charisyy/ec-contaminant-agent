@@ -58,15 +58,30 @@ def stats(con):
         "cluster_runs": [dict(r) for r in con.execute("SELECT * FROM cluster_runs ORDER BY created_at DESC")],
     }
 
+def filter_values(value, allowed=None):
+    """Accept legacy single values and repeated filters; an empty selection means all."""
+    values = value if isinstance(value, (list, tuple)) else [value]
+    if any(not isinstance(item, str) for item in values):
+        raise ValueError('Filter values must be strings')
+    values = list(dict.fromkeys(item for item in values if item != ''))
+    if allowed is not None and any(item not in allowed for item in values):
+        raise ValueError('Invalid filter value')
+    return values
+
+
 def search(con, q="", category="", experiment="", measured="", structure="", run_id="", cluster="", group="", page=1, limit=50):
     clauses=[]; args=[]
     if q:
         clauses.append("(e.id LIKE ? OR e.name LIKE ? OR e.original_name LIKE ? OR e.english_name LIKE ? OR e.cas LIKE ? OR e.id IN (SELECT es.entity_id FROM entity_structures es JOIN structures sx ON sx.id=es.structure_id WHERE sx.inchikey LIKE ?))")
         args.extend(["%"+q+"%"]*6)
-    for col,value in [("category",category),("experiment_candidate",experiment),("measured",measured)]:
-        if value != "": clauses.append("e."+col+"=?"); args.append(value)
-    if structure in ("yes","no"):
-        clauses.append("e.selected_structure_id IS "+("NOT NULL" if structure=="yes" else "NULL"))
+    for col,value,allowed in [("category",category,None),("experiment_candidate",experiment,('0','1')),("measured",measured,('0','1'))]:
+        values = filter_values(value, allowed)
+        if values:
+            clauses.append("e."+col+" IN ("+','.join('?' for _ in values)+")")
+            args.extend(values)
+    structures = filter_values(structure, ('yes','no'))
+    if len(structures) == 1:
+        clauses.append("e.selected_structure_id IS "+("NOT NULL" if structures[0]=="yes" else "NULL"))
     if run_id and cluster:
         clauses.append("EXISTS(SELECT 1 FROM cluster_members m WHERE m.run_id=? AND m.cluster_id=? AND m.parent_key=s.parent_key)");args.extend([run_id,cluster])
     if group:
