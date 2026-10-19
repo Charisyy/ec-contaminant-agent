@@ -21,6 +21,7 @@ def main():
     analyze.add_argument('--workflow',action='append',choices=('structure','neighbors','ecology'),help='可重复选择；省略时执行三条流程')
     exposure=sub.add_parser('import-exposures');exposure.add_argument('csv')
     evidence=sub.add_parser('import-evidence');evidence.add_argument('csv')
+    literature=sub.add_parser('import-literature');literature.add_argument('pack')
     args=parser.parse_args()
     if args.command=='run':
         from .workflow import CatalogFlow
@@ -43,5 +44,8 @@ def main():
     elif args.command=='import-evidence':
         from .evidence import import_evidence
         print(dumps(import_evidence(args.csv,args.db)))
+    elif args.command=='import-literature':
+        from .literature import import_pack
+        print(dumps(import_pack(args.pack,args.db)))
 
 if __name__=='__main__':main()

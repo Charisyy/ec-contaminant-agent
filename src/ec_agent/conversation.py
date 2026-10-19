@@ -62,7 +62,9 @@ def validated_tool_reply(observations,error):
         ecology=result.get('ecology')
         if ecology is not None:
             evidence=ecology.get('evidence',[])
-            lines.append(f'本次工具返回 {len(evidence)} 条已有生态证据。')
+            total=ecology.get('evidence_count',len(evidence))
+            lines.append(f'目录收录 {total} 条生态证据，本次展示 {len(evidence)} 条。')
+            if ecology.get('evidence_summary'):lines.append(ecology['evidence_summary']['notice'])
             if not evidence:lines.append('当前未收录证据，不能据此判断安全。')
             for item in evidence[:12]:
                 text=str(item.get('original_text') or '').strip()
@@ -70,7 +72,7 @@ def validated_tool_reply(observations,error):
                 medium={'freshwater':'淡水','marine':'河口/海水','soil':'土壤','sediment':'沉积物'}.get(item.get('compartment'),item.get('compartment') or '未注明')
                 duration={'acute':'急性','chronic':'慢性','unknown':'未注明'}.get(item.get('duration_class'),item.get('duration_class') or '未注明')
                 lines.append(f"- {item.get('endpoint','未注明端点')}；对象：{item.get('taxon') or '未注明'}；介质：{medium}；时长类别：{duration}；{value} {item.get('unit') or ''}。")
-            if len(evidence)>12:lines.append('以上显示前 12 条，完整证据保留在本轮导出记录中。')
+            if total>12:lines.append('以上展示前 12 条；请打开实体详情翻页或导出完整证据 CSV。本轮问答记录只保存展示部分。')
             reason=ecology.get('risk',{}).get('reason') or ecology.get('reason')
             if reason:lines.append(reason);gaps.append(reason)
         for warning in run.get('warnings',[]):

@@ -39,7 +39,7 @@ class StructureEvidenceTool(CatalogTool):
     args_schema:type[BaseModel]=EntityInput
     def _run(self,entity_id:str):
         with connect_readonly(self.db_path) as con:
-            value=detail(con,entity_id)
+            value=detail(con,entity_id,evidence_limit=12)
             if value:value['risk']=risk_results(con,entity_id)
             return dumps(value or {'status':'not_found','entity_id':entity_id})
 
@@ -123,8 +123,11 @@ class EcologicalScreenTool(CatalogTool):
         with connect_readonly(self.db_path) as con:
             if not con.execute('SELECT 1 FROM entities WHERE id=?',(entity_id,)).fetchone():
                 return dumps({'entity_id':entity_id,'status':'not_found','evidence':[],'risk_score':None})
-            evidence=[dict(r) for r in con.execute('''SELECT v.id,v.evidence_type,v.endpoint,v.compartment,v.taxon,v.duration_class,v.relation,v.value,v.unit,v.source_cas,v.chemical_form,v.identity_confirmed,v.original_text,s.url source_url,s.version source_version,s.accessed_at,s.content_sha256 FROM evidence v JOIN sources s ON s.id=v.source_id WHERE v.entity_id=? ORDER BY v.id''',(entity_id,))]
-            return dumps({'entity_id':entity_id,'status':'completed','evidence':evidence,'risk':risk_results(con,entity_id),'risk_score':None})
+            from .literature import evidence_page
+            page=evidence_page(con,entity_id,limit=12)
+            return dumps({'entity_id':entity_id,'status':'completed','evidence':page['rows'],'evidence_count':page['total'],
+                'evidence_summary':page['summary'],'evidence_truncated':page['truncated'],
+                'evidence_url':'/api/evidence/'+entity_id,'risk':risk_results(con,entity_id),'risk_score':None})
 
 class RunResearchWorkflowTool(CatalogTool):
     name:str='run_research_workflow'

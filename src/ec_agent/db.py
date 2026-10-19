@@ -100,13 +100,16 @@ def search(con, q="", category="", experiment="", measured="", structure="", run
         r["functional_groups"]=list(features.get("functional_groups",{}))
     return {"total":total,"page":page,"limit":limit,"rows":rows}
 
-def detail(con, entity_id):
+def detail(con, entity_id, evidence_limit=40):
     row=con.execute("SELECT * FROM entities WHERE id=?",(entity_id,)).fetchone()
     if not row: return None
     result=dict(row);result["payload"]=json.loads(result.pop("payload_json"))
     result["structures"]=[dict(r) for r in con.execute("SELECT s.*,es.role,es.cid,es.source_url FROM entity_structures es JOIN structures s ON s.id=es.structure_id WHERE es.entity_id=? ORDER BY es.role",(entity_id,))]
     for r in result["structures"]: r["features"]=json.loads(r.pop("features_json") or "{}")
-    result["evidence"]=[dict(r) for r in con.execute("SELECT v.*,s.url source_url,s.version source_version,s.accessed_at FROM evidence v JOIN sources s ON s.id=v.source_id WHERE v.entity_id=? ORDER BY v.endpoint,v.value",(entity_id,))]
+    from .literature import evidence_page
+    evidence=evidence_page(con,entity_id,limit=evidence_limit)
+    result['evidence']=evidence['rows'];result['evidence_count']=evidence['total']
+    result['evidence_summary']=evidence['summary'];result['evidence_truncated']=evidence['truncated']
     result["exposures"]=[dict(r) for r in con.execute("SELECT * FROM exposures WHERE entity_id=?",(entity_id,))]
     result["clusters"]=[dict(r) for r in con.execute("SELECT m.* FROM cluster_members m JOIN structures s ON s.parent_key=m.parent_key WHERE s.id=?",(result["selected_structure_id"],))]
     result["related_entities"]=[dict(r) for r in con.execute("SELECT id,name,cas FROM entities WHERE selected_structure_id=? AND id<>?",(result["selected_structure_id"],entity_id))] if result["selected_structure_id"] else []

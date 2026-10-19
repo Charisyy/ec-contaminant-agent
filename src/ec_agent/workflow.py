@@ -39,6 +39,9 @@ class CatalogFlow(Flow[CatalogState]):
     @listen(cluster_full_catalog)
     def attach_source_backed_evidence(self,_):
         self.state.stages['evidence']=json.loads(AttachBenchmarksTool(db_path=self.state.db_path,snapshot_path=self.state.benchmarks_path).run())
+        from .literature import import_pack
+        pack=PROJECT/'inputs/literature_evidence_20261019.jsonl.gz'
+        if pack.exists():self.state.stages['literature']=import_pack(pack,self.state.db_path)
         return self.state.stages['evidence']
 
     @listen(attach_source_backed_evidence)

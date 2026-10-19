@@ -71,3 +71,16 @@ def test_runtime_json_resources_packaged():
     assert 'web/*.css' in config['tool']['setuptools']['package-data']['ec_agent']
     for name in ('research_policy.json','functional_group_rules.json'):
         assert isinstance(json.loads((PROJECT/'src/ec_agent'/name).read_text(encoding='utf-8')),dict)
+
+def test_literature_pagination_and_complete_csv(local_server):
+    import csv,io
+    with urllib.request.urlopen(local_server+'/api/evidence/EC0614?limit=10') as r:first=json.load(r)
+    with urllib.request.urlopen(local_server+'/api/evidence/EC0614?limit=10&page=2') as r:second=json.load(r)
+    assert first['total']>100 and len(first['rows'])==len(second['rows'])==10
+    assert {r['id'] for r in first['rows']}.isdisjoint(r['id'] for r in second['rows'])
+    with urllib.request.urlopen(local_server+'/api/evidence/EC0614?format=csv') as r:
+        assert 'attachment' in r.headers['Content-Disposition']
+        rows=list(csv.DictReader(io.StringIO(r.read().decode('utf-8-sig'))))
+    assert len(rows)==first['total'] and all(r['source_metadata'] for r in rows)
+    with pytest.raises(urllib.error.HTTPError) as error:urllib.request.urlopen(local_server+'/api/evidence/DOESNOTEXIST')
+    assert error.value.code==404

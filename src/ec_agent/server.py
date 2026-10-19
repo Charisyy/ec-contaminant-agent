@@ -10,6 +10,7 @@ from .evidence import first_pass,risk_results
 from . import __version__
 from .model_settings import public_settings,save_settings,test_connection,model_failure_details
 from .conversation import local_help,ConversationContextError
+from .literature import evidence_page
 
 def environment_status():
     missing=[name for name in ('crewai','rdkit','pydantic','dotenv') if importlib.util.find_spec(name) is None]
@@ -74,6 +75,19 @@ def create_server(db=DEFAULT_DB,port=8765):
                     if not file.exists():return self.send({'error':'请先完成全量工作流'},404)
                     return self.send(file.read_bytes(),content_type='text/csv; charset=utf-8' if file.suffix=='.csv' else 'application/json; charset=utf-8')
                 with connect(db) as con:
+                    if p.startswith('/api/evidence/'):
+                        eid=p.removeprefix('/api/evidence/')
+                        if not con.execute('SELECT 1 FROM entities WHERE id=?',(eid,)).fetchone():return self.send({'error':'实体不存在'},404)
+                        if q('format')=='csv':
+                            buf=io.StringIO(newline='');writer=csv.writer(buf)
+                            cur=con.execute('''SELECT v.*,s.url source_url,s.version source_version,s.metadata_json source_metadata FROM evidence v
+                                JOIN sources s ON s.id=v.source_id WHERE v.entity_id=? ORDER BY v.id''',(eid,))
+                            writer.writerow([c[0] for c in cur.description])
+                            for row in cur:writer.writerow(["'"+v if isinstance(v,str) and v.lstrip().startswith(('=','+','-','@')) else v for v in row])
+                            self.send_response(200);body=('\ufeff'+buf.getvalue()).encode('utf-8')
+                            self.send_header('Content-Type','text/csv; charset=utf-8');self.send_header('Content-Disposition',f'attachment; filename="{eid}-evidence.csv"')
+                            self.send_header('Content-Length',str(len(body)));self.send_header('X-Content-Type-Options','nosniff');self.send_header('Cache-Control','no-store');self.end_headers();self.wfile.write(body);return
+                        return self.send(evidence_page(con,eid,page=int(q('page','1')),limit=int(q('limit','40'))))
                     if p=='/api/stats':return self.send(stats(con))
                     if p=='/api/entities':return self.send(search(con,**{k:q(k) for k in ('q','run_id','cluster','group')},**{k:qs.get(k,[]) for k in ('category','experiment','measured','structure')},page=int(q('page','1')),limit=int(q('limit','50'))))
                     if p=='/api/triage':return self.send(first_pass(con))
