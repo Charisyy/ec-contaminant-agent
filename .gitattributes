@@ -19,3 +19,4 @@ reference_outputs/** -text
 .env.example text eol=lf
 *.sql text eol=lf
 *.txt text eol=lf
+third_party/** -text -diff

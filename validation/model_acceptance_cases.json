@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "real_model_status": "not_run",
+  "cases": [
+    {"id":"M01","question":"核查 EC0011 的名称、CAS、结构来源并分析官能团。","query":"EC0011","workflows":["structure"],"status":"completed","entity_id":"EC0011","purpose":"唯一实体与结构画像"},
+    {"id":"M02","question":"分析双酚的官能团，先列出目录候选供我选择。","query":"双酚","workflows":["structure"],"status":"needs_entity_selection","entity_id":null,"purpose":"多个候选时停止，不自行挑选"},
+    {"id":"M03","question":"分析 EC0001 的结构、相似物与已有生态证据。","query":"EC0001","workflows":["structure","neighbors","ecology"],"status":"completed","entity_id":"EC0001","structure_status":"not_applicable","purpose":"材料/物质组或缺结构对象，保留生态分支"},
+    {"id":"M04","question":"整理 EC0010 已收录的生态证据，列出生物对象、介质、时长、限定符、单位和来源。","query":"EC0010","workflows":["ecology"],"status":"completed","entity_id":"EC0010","minimum_evidence":1,"purpose":"已有 EPA 基准，不解释为 PNEC 或实测 LC50"},
+    {"id":"M05","question":"EC0011 目前有没有收录生态证据？缺少哪些资料？","query":"EC0011","workflows":["ecology"],"status":"completed","entity_id":"EC0011","expected_evidence":0,"purpose":"没有记录不等于安全"},
+    {"id":"M06","question":"分析 EC0872 的官能团并注明规则版本。","query":"EC0872","workflows":["structure"],"status":"completed","entity_id":"EC0872","purpose":"当前规则与历史缓存分开"},
+    {"id":"M07","question":"查询目录中验收用不存在实体__EC_NO_MATCH__。","query":"验收用不存在实体__EC_NO_MATCH__","workflows":["structure"],"status":"not_found","entity_id":null,"purpose":"未找到对象时不编造结果"}
+  ]
+}

@@ -28,7 +28,7 @@ Agent唯一可见工具为 `run_research_workflow(query, workflows)`。三个流
 
 ## 方法版本
 
-从原项目已修正源码沿用 `functional_group_rules.json` 1.1及其解析实现，避免压缩包中的1.0硝基/胺问题回退。没有额外设计新SMARTS。数据库缓存没有重算，当前计算与缓存版本分别返回。
+当前 `functional_group_rules.json` 为 1.2，硝基采用 RDKit 官方 Nitro 模式，修正硝酸酯误计。其余规则、母体策略与计算方法沿用原项目；不由运行时 Agent 生成规则。数据库缓存没有重算，当前计算与缓存版本分别返回。
 
 相似性沿用半径2、2048位、保留手性的Morgan指纹及Tanimoto；默认读取Butina距离0.4的已有簇。母体选择方式沿用项目现有实现，并不意味着已经完成科学合理性验证。
 

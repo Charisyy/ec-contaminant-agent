@@ -38,7 +38,7 @@ def test_combined_flow_runs_shared_steps_once_and_preserves_database(tmp_path):
     names=[t['tool'] for t in result['trace']]
     assert len(names)==7 and names.count('parse_catalog_structure')==1
     assert result['results']['structure']['identifier_consistent']
-    assert result['results']['functional_groups']['rules_version']=='1.1'
+    assert result['results']['functional_groups']['rules_version']=='1.2'
     assert result['results']['functional_groups']['functional_groups']['醌片段']['count']==1
     assert result['results']['ecology']['risk']['ratios']==[]
     assert result['methods']['similarity']['radius']==2 and result['risk_score'] is None
@@ -109,7 +109,7 @@ def test_historical_rule_cache_and_changed_cluster_config_are_visible(tmp_path):
         con.execute("UPDATE cluster_runs SET config_json=json_set(config_json,'$.radius',3)")
     result=run_entity_analysis('EC0872',db,output_dir=tmp_path/'runs')
     assert result['results']['structure']['cache_status']=='historical'
-    assert result['results']['functional_groups']['rules_version']=='1.1'
+    assert result['results']['functional_groups']['rules_version']=='1.2'
     assert result['results']['cluster']['status']=='historical'
     assert 'radius' in result['results']['cluster']['mismatched_fields']
     assert result['status']=='partial'

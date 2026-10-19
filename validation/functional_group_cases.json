@@ -1,0 +1,353 @@
+{
+  "rules_version": "1.2",
+  "purpose": "有限规则的正反例与已知边界检查；不是独立实验验证或完整分类认证。",
+  "expected_values_origin": "正反例按已声明规则定义列出；边界项单独记录当前限制，未视为所有化学分类均正确。",
+  "review_status": "researcher_review_pending",
+  "official_nitro_source_sha256": "ba8fa80a1b8fb65a031f87d781ec9dca7a42393f93ef77b6bb4d51be9c7438a2",
+  "cases": [
+    {
+      "id": "R01-positive",
+      "name": "乙酸",
+      "kind": "positive",
+      "smiles": "CC(=O)O",
+      "rule": "羧酸",
+      "expected_matches": 1
+    },
+    {
+      "id": "R01-negative",
+      "name": "乙酸根",
+      "kind": "negative",
+      "smiles": "CC(=O)[O-]",
+      "rule": "羧酸",
+      "expected_matches": 0
+    },
+    {
+      "id": "R02-positive",
+      "name": "乙酸根",
+      "kind": "positive",
+      "smiles": "CC(=O)[O-]",
+      "rule": "羧酸盐",
+      "expected_matches": 1
+    },
+    {
+      "id": "R02-negative",
+      "name": "乙酸",
+      "kind": "negative",
+      "smiles": "CC(=O)O",
+      "rule": "羧酸盐",
+      "expected_matches": 0
+    },
+    {
+      "id": "R03-positive",
+      "name": "苯酚",
+      "kind": "positive",
+      "smiles": "Oc1ccccc1",
+      "rule": "酚",
+      "expected_matches": 1
+    },
+    {
+      "id": "R03-negative",
+      "name": "苯甲醇",
+      "kind": "negative",
+      "smiles": "OCc1ccccc1",
+      "rule": "酚",
+      "expected_matches": 0
+    },
+    {
+      "id": "R04-positive",
+      "name": "乙醇",
+      "kind": "positive",
+      "smiles": "CCO",
+      "rule": "醇",
+      "expected_matches": 1
+    },
+    {
+      "id": "R04-negative",
+      "name": "苯酚",
+      "kind": "negative",
+      "smiles": "Oc1ccccc1",
+      "rule": "醇",
+      "expected_matches": 0
+    },
+    {
+      "id": "R05-positive",
+      "name": "乙酸乙酯",
+      "kind": "positive",
+      "smiles": "CC(=O)OCC",
+      "rule": "酯",
+      "expected_matches": 1
+    },
+    {
+      "id": "R05-negative",
+      "name": "乙酸",
+      "kind": "negative",
+      "smiles": "CC(=O)O",
+      "rule": "酯",
+      "expected_matches": 0
+    },
+    {
+      "id": "R06-positive",
+      "name": "二乙醚",
+      "kind": "positive",
+      "smiles": "CCOCC",
+      "rule": "醚",
+      "expected_matches": 1
+    },
+    {
+      "id": "R06-negative",
+      "name": "乙酸乙酯",
+      "kind": "negative",
+      "smiles": "CC(=O)OCC",
+      "rule": "醚",
+      "expected_matches": 0
+    },
+    {
+      "id": "R07-positive",
+      "name": "乙胺",
+      "kind": "positive",
+      "smiles": "CCN",
+      "rule": "胺",
+      "expected_matches": 1
+    },
+    {
+      "id": "R07-negative",
+      "name": "乙酰胺",
+      "kind": "negative",
+      "smiles": "CC(=O)N",
+      "rule": "胺",
+      "expected_matches": 0
+    },
+    {
+      "id": "R08-positive",
+      "name": "乙酰胺",
+      "kind": "positive",
+      "smiles": "CC(=O)N",
+      "rule": "酰胺",
+      "expected_matches": 1
+    },
+    {
+      "id": "R08-negative",
+      "name": "乙胺",
+      "kind": "negative",
+      "smiles": "CCN",
+      "rule": "酰胺",
+      "expected_matches": 0
+    },
+    {
+      "id": "R09-positive",
+      "name": "甲磺酰胺",
+      "kind": "positive",
+      "smiles": "CS(=O)(=O)N",
+      "rule": "磺酰胺",
+      "expected_matches": 1
+    },
+    {
+      "id": "R09-negative",
+      "name": "二甲基砜",
+      "kind": "negative",
+      "smiles": "CS(=O)(=O)C",
+      "rule": "磺酰胺",
+      "expected_matches": 0
+    },
+    {
+      "id": "R10-positive",
+      "name": "二甲基砜",
+      "kind": "positive",
+      "smiles": "CS(=O)(=O)C",
+      "rule": "砜",
+      "expected_matches": 1
+    },
+    {
+      "id": "R10-negative",
+      "name": "甲磺酰胺",
+      "kind": "negative",
+      "smiles": "CS(=O)(=O)N",
+      "rule": "砜",
+      "expected_matches": 0
+    },
+    {
+      "id": "R11-positive",
+      "name": "甲磺酸",
+      "kind": "positive",
+      "smiles": "CS(=O)(=O)O",
+      "rule": "磺酸",
+      "expected_matches": 1
+    },
+    {
+      "id": "R11-negative",
+      "name": "甲磺酸根",
+      "kind": "negative",
+      "smiles": "CS(=O)(=O)[O-]",
+      "rule": "磺酸",
+      "expected_matches": 0
+    },
+    {
+      "id": "R12-positive",
+      "name": "甲磺酸根",
+      "kind": "positive",
+      "smiles": "CS(=O)(=O)[O-]",
+      "rule": "磺酸盐",
+      "expected_matches": 1
+    },
+    {
+      "id": "R12-negative",
+      "name": "甲磺酸",
+      "kind": "negative",
+      "smiles": "CS(=O)(=O)O",
+      "rule": "磺酸盐",
+      "expected_matches": 0
+    },
+    {
+      "id": "R13-positive",
+      "name": "磷酸单甲酯",
+      "kind": "positive",
+      "smiles": "COP(=O)(O)O",
+      "rule": "磷酸酯",
+      "expected_matches": 1
+    },
+    {
+      "id": "R13-negative",
+      "name": "磷酸",
+      "kind": "negative",
+      "smiles": "OP(=O)(O)O",
+      "rule": "磷酸酯",
+      "expected_matches": 0
+    },
+    {
+      "id": "R14-positive",
+      "name": "硝基甲烷",
+      "kind": "positive",
+      "smiles": "C[N+](=O)[O-]",
+      "rule": "硝基",
+      "expected_matches": 1
+    },
+    {
+      "id": "R14-negative",
+      "name": "硝酸甲酯",
+      "kind": "negative",
+      "smiles": "CO[N+](=O)[O-]",
+      "rule": "硝基",
+      "expected_matches": 0
+    },
+    {
+      "id": "R15-positive",
+      "name": "乙腈",
+      "kind": "positive",
+      "smiles": "CC#N",
+      "rule": "腈",
+      "expected_matches": 1
+    },
+    {
+      "id": "R15-negative",
+      "name": "乙胺",
+      "kind": "negative",
+      "smiles": "CCN",
+      "rule": "腈",
+      "expected_matches": 0
+    },
+    {
+      "id": "R16-positive",
+      "name": "氯乙烷",
+      "kind": "positive",
+      "smiles": "CCCl",
+      "rule": "有机卤素",
+      "expected_matches": 1
+    },
+    {
+      "id": "R16-negative",
+      "name": "氯化钠",
+      "kind": "negative",
+      "smiles": "[Na+].[Cl-]",
+      "rule": "有机卤素",
+      "expected_matches": 0
+    },
+    {
+      "id": "R17-positive",
+      "name": "对苯醌",
+      "kind": "positive",
+      "smiles": "O=C1C=CC(=O)C=C1",
+      "rule": "醌片段",
+      "expected_matches": 1
+    },
+    {
+      "id": "R17-negative",
+      "name": "邻苯醌",
+      "kind": "negative",
+      "smiles": "O=C1C=CC=CC1=O",
+      "rule": "醌片段",
+      "expected_matches": 0
+    },
+    {
+      "id": "B01",
+      "name": "磷酸三甲酯",
+      "kind": "boundary",
+      "smiles": "COP(=O)(OC)OC",
+      "rule": "磷酸酯",
+      "expected_matches": 3,
+      "note": "一个磷中心产生三个不同原子集合匹配；不能解释为三个独立磷酸官能团。"
+    },
+    {
+      "id": "B02",
+      "name": "磷酸单甲酯二阴离子",
+      "kind": "boundary",
+      "smiles": "COP(=O)([O-])[O-]",
+      "rule": "磷酸酯",
+      "expected_matches": 0,
+      "note": "当前 OX2 约束未覆盖该离子形式；这是已知漏检边界。"
+    },
+    {
+      "id": "B03",
+      "name": "碳酸二甲酯",
+      "kind": "boundary",
+      "smiles": "COC(=O)OC",
+      "rule": "酯",
+      "expected_matches": 2,
+      "note": "两个 C(=O)-O-C 方向均被计入，属于片段匹配。"
+    },
+    {
+      "id": "B04",
+      "name": "脲",
+      "kind": "boundary",
+      "smiles": "NC(=O)N",
+      "rule": "酰胺",
+      "expected_matches": 2,
+      "note": "两个 N-C(=O) 连接均命中。"
+    },
+    {
+      "id": "B05",
+      "name": "邻苯醌",
+      "kind": "boundary",
+      "smiles": "O=C1C=CC=CC1=O",
+      "rule": "醌片段",
+      "expected_matches": 0,
+      "note": "当前仅覆盖所示对苯醌型片段，未覆盖全部醌类。"
+    },
+    {
+      "id": "B06",
+      "name": "苯",
+      "kind": "boundary",
+      "smiles": "c1ccccc1",
+      "rule": "芳香原子",
+      "expected_matches": 6,
+      "note": "计数为六个芳香原子，不能解释为六个芳香环。"
+    },
+    {
+      "id": "B07",
+      "name": "吡咯",
+      "kind": "boundary",
+      "smiles": "c1cc[nH]c1",
+      "rule": "胺",
+      "expected_matches": 0,
+      "note": "当前胺规则排除芳香氮；未命中不代表不含氮。"
+    },
+    {
+      "id": "B08",
+      "name": "硝酸根",
+      "kind": "boundary",
+      "smiles": "[O-][N+](=O)[O-]",
+      "rule": "硝基",
+      "expected_matches": 0,
+      "note": "无机硝酸根不应计为与碳相连的硝基。"
+    }
+  ]
+}

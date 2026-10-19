@@ -49,7 +49,7 @@ def analyze_smiles(smiles):
     mw=Descriptors.MolWt(mol)
     flags=[]
     if len(fragments)>1: flags.append('母体指纹使用最大含碳片段；原结构和盐型完整保留')
-    if mw>1000: flags.append('大于1000 g/mol：不影响结构聚类，ECOSAR适用域需另查')
+    if mw>1000: flags.append('大于1000 g/mol：分子量偏大，请核查所选结构与实体类型')
     if Chem.GetFormalCharge(mol): flags.append('带电结构：logP估计不是指定pH下logD')
     return {'status':'parsed','eligible':eligible,'reason':reason,'parent_key':parent_key,'parent_smiles':parent_smiles,
       'rdkit_version':rdkit.__version__,'rules_version':RULES_VERSION,'parent_policy':PARENT_POLICY,
