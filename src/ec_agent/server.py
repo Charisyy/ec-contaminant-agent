@@ -9,7 +9,7 @@ from .chemistry import nearest
 from .evidence import first_pass,risk_results
 from . import __version__
 from .model_settings import public_settings,save_settings,test_connection,model_failure_details
-from .conversation import local_help
+from .conversation import local_help,ConversationContextError
 
 def environment_status():
     missing=[name for name in ('crewai','rdkit','pydantic','dotenv') if importlib.util.find_spec(name) is None]
@@ -52,6 +52,8 @@ def create_server(db=DEFAULT_DB,port=8765):
                     return self.send({'error':'仅接受本地访问'},403)
                 u=urlparse(self.path);p=u.path;qs=parse_qs(u.query);q=lambda k,d='':qs.get(k,[d])[0]
                 if p=='/':return self.send((Path(__file__).parent/'web/index.html').read_text(encoding='utf-8'),content_type='text/html; charset=utf-8')
+                if p in ('/chat.js','/chat.css'):
+                    return self.send((Path(__file__).parent/'web'/p[1:]).read_text(encoding='utf-8'),content_type='application/javascript; charset=utf-8' if p.endswith('.js') else 'text/css; charset=utf-8')
                 if p=='/api/health':return self.send({'ok':True,'application':'ec-catalog-agent','version':__version__,'agent_count':1,'workflows':['structure','neighbors','ecology'],'mode':'local','llm_ready':public_settings()['configured'],'environment':environment_status()})
                 if p=='/api/model-settings':return self.send(public_settings())
                 if p=='/api/export':
@@ -143,7 +145,8 @@ def create_server(db=DEFAULT_DB,port=8765):
                     if help_reply is not None:return self.send(help_reply)
                     if not public_settings()['configured']:return self.send({'error':'请先在“模型设置”中选择接口并保存 API Key。固定分析无需模型。','code':'model_not_configured'},409)
                     from .crew import answer_question
-                    try:return self.send(answer_question(question,db))
+                    try:return self.send(answer_question(question,db,context_entity_id=data.get('context_entity_id')))
+                    except ConversationContextError as exc:return self.send({'error':str(exc),'code':'invalid_context'},400)
                     except ModuleNotFoundError:raise
                     except Exception as exc:return self.model_failure(exc)
                 return self.send({'error':'Not found'},404)

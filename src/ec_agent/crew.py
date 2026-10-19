@@ -5,7 +5,7 @@ from pydantic import BaseModel,ConfigDict
 from crewai import Agent,Crew,Task,Process,LLM
 from .db import DEFAULT_DB,dumps
 from .tools import RunResearchWorkflowTool
-from .conversation import local_help,AnswerValidationError
+from .conversation import local_help,AnswerValidationError,question_with_context
 
 class EvidenceReview(BaseModel):
     model_config=ConfigDict(extra='forbid')
@@ -76,12 +76,13 @@ def checked_result(result,observations):
     value['verification_scope']='已校验实际流程执行、实体ID、来源链接和禁止综合分数；自然语言结论仍需科学审阅。'
     return value
 
-def answer_question(question,db=DEFAULT_DB,*,llm=None,output_dir=None):
+def answer_question(question,db=DEFAULT_DB,*,llm=None,output_dir=None,context_entity_id=None):
     if not isinstance(question,str) or not question.strip() or len(question)>2000:raise ValueError('问题为空或过长')
     help_reply=local_help(question)
     if help_reply is not None:return help_reply
+    effective_question=question_with_context(question,context_entity_id,db)
     crew=make_crew(db,llm,output_dir=output_dir)
-    result=crew.kickoff(inputs={'question':question})
+    result=crew.kickoff(inputs={'question':effective_question})
     tool=crew.agents[0].tools[0]
     return checked_result(result,tool.observations)
 

@@ -1,6 +1,18 @@
 """Exact help intents and safe answer-validation errors; no scientific rules."""
 import re
 
+class ConversationContextError(ValueError):pass
+
+def question_with_context(question,entity_id,db):
+    if entity_id is None:return question
+    if not isinstance(entity_id,str) or not re.fullmatch(r'EC\d{4}',entity_id):
+        raise ConversationContextError('当前研究对象编号无效，请重新选择目录实体。')
+    from .db import connect_readonly,dumps
+    with connect_readonly(db) as con:
+        row=con.execute('SELECT id,name,cas FROM entities WHERE id=?',(entity_id,)).fetchone()
+    if row is None:raise ConversationContextError('当前研究对象已不在目录中，请重新选择。')
+    return question+'\n\n页面中已定位的研究对象（不表示化学身份已确认）：'+dumps(dict(row))+'\n仅在当前问题未明确指定对象时参考。若问题指定其他对象，以当前问题为准；重名仍须让用户选择。'
+
 class AnswerValidationError(ValueError):
     def __init__(self,code,message):
         super().__init__(message)

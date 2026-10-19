@@ -46,6 +46,9 @@ def test_web_api_three_workflows_and_validation(local_server):
     assert 'id="model-form"' in html
     assert '目录官能团为历史缓存' in html
     assert '一个助手，三条固定流程' not in html
+    for asset,kind in (('/chat.js','javascript'),('/chat.css','css')):
+        with urllib.request.urlopen(local_server+asset) as response:
+            assert kind in response.headers['Content-Type'] and len(response.read())>1000
     with urllib.request.urlopen(local_server+'/api/export?kind=clusters') as response:
         assert len(response.read())>1000
 
@@ -56,12 +59,15 @@ def test_web_javascript_syntax(tmp_path):
     html=(PROJECT/'src/ec_agent/web/index.html').read_text(encoding='utf-8')
     script=tmp_path/'web.js'
     script.write_text('\n'.join(re.findall(r'<script>(.*?)</script>',html,re.S)),encoding='utf-8')
-    result=subprocess.run([node,'--check',str(script)],capture_output=True,text=True)
-    assert result.returncode==0,result.stderr
+    for source in (script,PROJECT/'src/ec_agent/web/chat.js'):
+        result=subprocess.run([node,'--check',str(source)],capture_output=True,text=True)
+        assert result.returncode==0,result.stderr
 
 def test_runtime_json_resources_packaged():
     import tomllib
     config=tomllib.loads((PROJECT/'pyproject.toml').read_text(encoding='utf-8'))
     assert '*.json' in config['tool']['setuptools']['package-data']['ec_agent']
+    assert 'web/*.js' in config['tool']['setuptools']['package-data']['ec_agent']
+    assert 'web/*.css' in config['tool']['setuptools']['package-data']['ec_agent']
     for name in ('research_policy.json','functional_group_rules.json'):
         assert isinstance(json.loads((PROJECT/'src/ec_agent'/name).read_text(encoding='utf-8')),dict)

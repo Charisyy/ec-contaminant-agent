@@ -166,3 +166,25 @@ def test_nested_provider_errors_are_classified_without_messages(status,code):
     result=settings.model_failure_details(outer)
     assert result['code']==code and result['provider_status']==status
     assert 'private credential' not in json.dumps(result)
+
+@pytest.mark.parametrize('entity_id',['EC9999','EC0011; DROP TABLE entities',{'id':'EC0011'},'ec0011'])
+def test_invalid_context_is_rejected_before_agent_creation(entity_id,monkeypatch):
+    from ec_agent import crew
+    from ec_agent.conversation import ConversationContextError
+    def forbidden(*args,**kwargs):raise AssertionError('Invalid context must not create an agent')
+    monkeypatch.setattr(crew,'make_crew',forbidden)
+    with pytest.raises(ConversationContextError):crew.answer_question('它有哪些官能团？',context_entity_id=entity_id)
+
+def test_followup_context_uses_catalog_identity_without_claiming_confirmation():
+    from ec_agent.conversation import question_with_context
+    value=question_with_context('它有哪些官能团？','EC0011',DEFAULT_DB)
+    assert value.startswith('它有哪些官能团？') and '可卡因' in value and '50-36-2' in value
+    assert '不表示化学身份已确认' in value and '以当前问题为准' in value
+
+def test_context_error_returns_actionable_http_400(http_app,isolated_model,monkeypatch):
+    settings.save_settings({'provider':'deepseek','api_key':'offline-fixture-key'})
+    from ec_agent import crew
+    def forbidden(*args,**kwargs):raise AssertionError('Invalid context must not request a model')
+    monkeypatch.setattr(crew,'make_crew',forbidden)
+    code,result=request(http_app,'/api/ask',{'question':'它有哪些官能团？','context_entity_id':'EC9999'})
+    assert code==400 and result['code']=='invalid_context'
