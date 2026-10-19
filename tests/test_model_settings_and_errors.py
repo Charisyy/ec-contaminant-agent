@@ -86,7 +86,8 @@ def test_workflow_exceptions_return_json_and_server_survives(http_app,monkeypatc
     code,result=request(http_app,'/api/health')
     assert code==200 and result['environment']['ready']
 
-def test_configured_adapter_executes_real_tools_against_mock_model(isolated_model,monkeypatch,tmp_path):
+@pytest.mark.parametrize('profile',['compatible','deepseek'])
+def test_configured_adapter_executes_real_tools_against_mock_model(isolated_model,monkeypatch,tmp_path,profile):
     monkeypatch.setenv('NO_PROXY','127.0.0.1,localhost')
     monkeypatch.setenv('no_proxy','127.0.0.1,localhost')
     calls=[]
@@ -95,6 +96,9 @@ def test_configured_adapter_executes_real_tools_against_mock_model(isolated_mode
         def do_POST(self):
             data=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
             calls.append(data)
+            if profile=='deepseek' and (data.get('thinking')!={'type':'disabled'} or data.get('response_format',{}).get('type')=='json_schema'):
+                body=b'{"error":{"message":"fixture: thinking protocol not selected","type":"invalid_request_error"}}'
+                self.send_response(400);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body);return
             invoked=any(message.get('role')=='tool' for message in data['messages'])
             if not invoked and data.get('tools'):
                 message={'role':'assistant','content':None,'tool_calls':[{'id':'call_fixture','type':'function',
@@ -114,8 +118,51 @@ def test_configured_adapter_executes_real_tools_against_mock_model(isolated_mode
     try:
         settings.save_settings({'provider':'compatible','base_url':f'http://127.0.0.1:{instance.server_port}/v1',
             'model':'local-fixture','api_key':'offline-fixture-key'})
+        if profile=='deepseek':monkeypatch.setenv('EC_AGENT_PROVIDER','deepseek')
         from ec_agent.crew import answer_question
         result=answer_question('分析 EC0011 的官能团',output_dir=tmp_path/'runs')
         assert result['entity_ids']==['EC0011'] and result['risk_score'] is None
         assert result['workflow_runs'][0]['trace'] and len(calls)>=2
+        if profile=='deepseek':assert all(call['thinking']=={'type':'disabled'} for call in calls)
     finally:instance.shutdown();instance.server_close();thread.join(timeout=5)
+
+@pytest.mark.parametrize('question',['你好','您好！','Hello','谢谢你'])
+def test_help_does_not_create_agent_or_request_model(monkeypatch,question):
+    from ec_agent import crew
+    def forbidden(*args,**kwargs):raise AssertionError('Help must not create an agent')
+    monkeypatch.setattr(crew,'make_crew',forbidden)
+    result=crew.answer_question(question)
+    assert result['execution_mode']=='local_help' and result['llm_used'] is False
+    assert result['workflow_runs']==[] and result['risk_score'] is None
+
+@pytest.mark.parametrize('question',['你好，请分析 EC0011','分析可卡因','EC0872','你好可卡因'])
+def test_help_does_not_swallow_research_questions(question):
+    from ec_agent.conversation import local_help
+    assert local_help(question) is None
+
+def test_help_and_model_errors_are_separate_http_results(http_app,isolated_model,monkeypatch):
+    from ec_agent import crew
+    from ec_agent.conversation import AnswerValidationError
+    code,result=request(http_app,'/api/ask',{'question':'你好'})
+    assert code==200 and result['execution_mode']=='local_help' and not result['llm_used']
+    settings.save_settings({'provider':'deepseek','api_key':'offline-fixture-key'})
+    def invalid(*args,**kwargs):raise AnswerValidationError('workflow_not_called','模型没有执行固定工作流。')
+    monkeypatch.setattr(crew,'answer_question',invalid)
+    code,result=request(http_app,'/api/ask',{'question':'分析 EC0011'})
+    assert code==422 and result['stage']=='answer_validation' and result['code']=='workflow_not_called'
+    class ProtocolError(Exception):status_code=400
+    def bad_request(*args,**kwargs):raise ProtocolError('private fixture message must not be exposed')
+    monkeypatch.setattr(crew,'answer_question',bad_request)
+    code,result=request(http_app,'/api/ask',{'question':'分析 EC0011'})
+    assert code==502 and result['stage']=='model_request' and result['provider_status']==400
+    assert result['request_id'] and 'private fixture' not in json.dumps(result)
+
+@pytest.mark.parametrize('status,code',[(400,'model_protocol'),(401,'model_authentication'),
+    (402,'model_balance'),(429,'model_rate_limit'),(404,'model_not_found'),(503,'model_service')])
+def test_nested_provider_errors_are_classified_without_messages(status,code):
+    class ProviderFailure(Exception):pass
+    inner=ProviderFailure('private credential fixture');inner.status_code=status
+    outer=RuntimeError('wrapper');outer.__cause__=inner
+    result=settings.model_failure_details(outer)
+    assert result['code']==code and result['provider_status']==status
+    assert 'private credential' not in json.dumps(result)

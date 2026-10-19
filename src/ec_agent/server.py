@@ -8,7 +8,8 @@ from .db import DEFAULT_DB,PROJECT,connect,stats,search,detail,dumps,now
 from .chemistry import nearest
 from .evidence import first_pass,risk_results
 from . import __version__
-from .model_settings import public_settings,save_settings,test_connection,model_error
+from .model_settings import public_settings,save_settings,test_connection,model_failure_details
+from .conversation import local_help
 
 def environment_status():
     missing=[name for name in ('crewai','rdkit','pydantic','dotenv') if importlib.util.find_spec(name) is None]
@@ -30,6 +31,12 @@ def create_server(db=DEFAULT_DB,port=8765):
             self.send_header('X-Content-Type-Options','nosniff');self.send_header('Cache-Control','no-store')
             self.end_headers();self.wfile.write(body)
         def log_message(self,format,*args):pass
+        def model_failure(self,exc):
+            value=model_failure_details(exc);value['request_id']=uuid.uuid4().hex[:12]
+            logger.error('request=%s path=%s stage=%s code=%s provider_status=%s error=%s',
+                value['request_id'],urlparse(self.path).path,value['stage'],value['code'],
+                value.get('provider_status','none'),type(exc).__name__)
+            return self.send(value,422 if value['stage']=='answer_validation' else 502)
         def failure(self,exc):
             request_id=uuid.uuid4().hex[:12]
             # Never log request bodies, keys, provider responses, or exception messages.
@@ -113,7 +120,7 @@ def create_server(db=DEFAULT_DB,port=8765):
                 if self.path=='/api/model-test':
                     try:return self.send(test_connection())
                     except ValueError as exc:return self.send({'error':str(exc)},400)
-                    except Exception as exc:return self.send({'error':model_error(exc)},502)
+                    except Exception as exc:return self.model_failure(exc)
                 if self.path=='/api/analyze':
                     query=str(data.get('query','')).strip()
                     if not query or len(query)>200:return self.send({'error':'请输入200字以内的名称、CAS或实体ID'},400)
@@ -130,13 +137,15 @@ def create_server(db=DEFAULT_DB,port=8765):
                         con.execute('INSERT INTO review_events(entity_id,created_at,decision,note) VALUES(?,?,?,?)',(eid,now(),decision,note[:4000]))
                     return self.send({'ok':True})
                 if self.path=='/api/ask':
-                    if not public_settings()['configured']:return self.send({'error':'请先在“模型设置”中选择接口并保存 API Key。固定分析无需模型。','code':'model_not_configured'},409)
-                    from .crew import answer_question
                     question=str(data.get('question','')).strip()
                     if not question or len(question)>2000:return self.send({'error':'问题为空或过长'},400)
+                    help_reply=local_help(question)
+                    if help_reply is not None:return self.send(help_reply)
+                    if not public_settings()['configured']:return self.send({'error':'请先在“模型设置”中选择接口并保存 API Key。固定分析无需模型。','code':'model_not_configured'},409)
+                    from .crew import answer_question
                     try:return self.send(answer_question(question,db))
                     except ModuleNotFoundError:raise
-                    except Exception as exc:return self.send({'error':model_error(exc)},502)
+                    except Exception as exc:return self.model_failure(exc)
                 return self.send({'error':'Not found'},404)
             except (ValueError,KeyError,TypeError):return self.send({'error':'请求内容无效'},400)
             except (BrokenPipeError,ConnectionResetError):pass

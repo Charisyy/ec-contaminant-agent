@@ -70,15 +70,38 @@ def save_settings(data,env_path=None):
         os.environ.update(changes)
         return public_settings()
 
-def model_error(exc):
-    status=getattr(exc,'status_code',None)
-    name=type(exc).__name__.lower()
-    if status in (401,403) or 'authentication' in name:return '模型认证失败，请检查 Key 和服务权限。'
-    if status==429 or 'ratelimit' in name:return '模型服务额度或请求频率受限，请检查账户状态。'
-    if 'timeout' in name:return '模型服务响应超时，请稍后重试。'
-    if 'connection' in name:return '无法连接模型服务，请检查服务地址和网络。'
-    if status==404:return '未找到模型或接口，请检查模型名称和服务地址。'
-    return '模型请求或结果校验未通过，请检查接口设置；固定分析仍可使用。'
+def transport_options(settings):
+    # DeepSeek defaults to thinking mode; this adapter uses the documented
+    # non-thinking tool protocol and does not request or expose reasoning content.
+    if settings.get('EC_AGENT_PROVIDER')=='deepseek' or urlsplit(settings.get('EC_AGENT_BASE_URL','')).hostname=='api.deepseek.com':
+        return {'extra_body':{'thinking':{'type':'disabled'}}}
+    return {}
+
+def model_failure_details(exc):
+    from .conversation import AnswerValidationError
+    seen=set();current=exc;status=None;name=type(exc).__name__.lower()
+    for _ in range(8):
+        if current is None or id(current) in seen:break
+        seen.add(id(current))
+        if isinstance(current,AnswerValidationError):
+            return {'error':current.public_message,'code':current.code,'stage':'answer_validation'}
+        candidate=getattr(current,'status_code',None)
+        if isinstance(candidate,int):status=candidate;name=type(current).__name__.lower();break
+        current=current.__cause__ or current.__context__
+    code='model_request_failed';message='模型请求未完成；请查看本次错误编号，固定分析仍可使用。'
+    if status in (401,403) or 'authentication' in name:code='model_authentication';message='模型认证失败，请检查 Key 和服务权限。'
+    elif status==402:code='model_balance';message='模型服务账户余额不足，请检查账户状态。'
+    elif status==429 or 'ratelimit' in name:code='model_rate_limit';message='模型服务额度或请求频率受限，请检查账户状态。'
+    elif 'timeout' in name:code='model_timeout';message='模型服务响应超时，请稍后重试。'
+    elif 'connection' in name:code='model_connection';message='无法连接模型服务，请检查服务地址和网络。'
+    elif status==404:code='model_not_found';message='未找到模型或接口，请检查模型名称和服务地址。'
+    elif status in (400,422):code='model_protocol';message='模型服务拒绝了请求参数或工具调用格式。基础连接成功也可能出现此错误。'
+    elif status is not None and status>=500:code='model_service';message='模型服务暂时异常，请稍后重试。'
+    value={'error':message,'code':code,'stage':'model_request'}
+    if status is not None:value['provider_status']=status
+    return value
+
+def model_error(exc):return model_failure_details(exc)['error']
 
 def test_connection():
     settings=runtime_settings()
@@ -93,6 +116,6 @@ def test_connection():
         if not result.id:raise RuntimeError('Empty model response')
     else:
         result=client.chat.completions.create(model=model,
-            messages=[{'role':'user','content':'Reply OK.'}],max_tokens=16)
+            messages=[{'role':'user','content':'Reply OK.'}],max_tokens=16,**transport_options(settings))
         if not result.choices:raise RuntimeError('Empty model response')
     return {'ok':True,'message':'模型请求成功。工具调用能力仍需通过实际研究问题验证。'}

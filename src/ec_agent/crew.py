@@ -5,6 +5,7 @@ from pydantic import BaseModel,ConfigDict
 from crewai import Agent,Crew,Task,Process,LLM
 from .db import DEFAULT_DB,dumps
 from .tools import RunResearchWorkflowTool
+from .conversation import local_help,AnswerValidationError
 
 class EvidenceReview(BaseModel):
     model_config=ConfigDict(extra='forbid')
@@ -17,7 +18,7 @@ class EvidenceReview(BaseModel):
 
 def configured_llm():
     # Preserve the existing provider settings; no external call occurs here.
-    from .model_settings import runtime_settings
+    from .model_settings import runtime_settings,transport_options
     settings=runtime_settings()
     model=settings['EC_AGENT_MODEL'];key=settings['EC_AGENT_API_KEY']
     if not model or not key:raise RuntimeError('尚未配置问答模型；三条固定工具工作流无需模型即可运行。')
@@ -26,6 +27,8 @@ def configured_llm():
         kwargs.update(api='responses',reasoning_effort='medium',store=False,auto_chain_reasoning=True)
     else:kwargs['temperature']=0
     if settings['EC_AGENT_BASE_URL']:kwargs['base_url']=settings['EC_AGENT_BASE_URL']
+    options=transport_options(settings)
+    if options:kwargs['additional_params']=options
     return LLM(**kwargs)
 
 def make_crew(db=DEFAULT_DB,llm=None,*,precomputed=None,output_dir=None):
@@ -57,24 +60,26 @@ def make_crew(db=DEFAULT_DB,llm=None,*,precomputed=None,output_dir=None):
     return Crew(agents=[agent],tasks=[task],process=Process.sequential,verbose=False,memory=False,cache=False)
 
 def checked_result(result,observations):
-    if result.pydantic is None:raise RuntimeError('模型未返回规定的结构化结果')
-    if not observations:raise ValueError('模型没有执行固定工作流，拒绝无工具依据的回答')
+    if result.pydantic is None:raise AnswerValidationError('answer_format','模型已返回，但回答格式不符合要求，未作为科研结果展示。')
+    if not observations:raise AnswerValidationError('workflow_not_called','模型没有执行固定工作流。请提供具体实体与分析任务，例如“分析 EC0872 的官能团”。')
     value=result.pydantic.model_dump()
     pending=any(r['status']=='needs_entity_selection' for r in observations)
     allowed_ids={r['entity_id'] for r in observations if r.get('entity_id')} if not pending else set()
-    if not set(value['entity_ids']).issubset(allowed_ids):raise ValueError('模型引用了本轮未分析或尚待用户选择的实体')
-    if allowed_ids and not value['entity_ids']:raise ValueError('模型遗漏本次已分析实体的标识')
-    if not allowed_ids and value['supported_findings']:raise ValueError('没有明确实体，不接受科学结论')
+    if not set(value['entity_ids']).issubset(allowed_ids):raise AnswerValidationError('unobserved_entity','模型引用了本轮未分析或尚待用户选择的实体，回答未通过核查。')
+    if allowed_ids and not value['entity_ids']:raise AnswerValidationError('missing_entity','模型遗漏本次已分析实体的标识，回答未通过核查。')
+    if not allowed_ids and value['supported_findings']:raise AnswerValidationError('unresolved_findings','没有明确实体，不接受科学结论。')
     allowed_urls={s['url'] for r in observations if r.get('entity_id') in value['entity_ids']
         for s in r.get('provenance',{}).get('sources',[]) if s.get('url')}
-    if any(url not in allowed_urls for url in value['source_urls']):raise ValueError('模型引用的来源未在本次工具结果中出现')
-    if value['risk_score'] is not None:raise ValueError('不接受单一综合风险分数')
+    if any(url not in allowed_urls for url in value['source_urls']):raise AnswerValidationError('unobserved_source','模型引用的来源未在本次工具结果中出现，回答未通过核查。')
+    if value['risk_score'] is not None:raise AnswerValidationError('forbidden_risk_score','模型输出了不允许的综合风险分数，回答未通过核查。')
     value['workflow_runs']=observations
     value['verification_scope']='已校验实际流程执行、实体ID、来源链接和禁止综合分数；自然语言结论仍需科学审阅。'
     return value
 
 def answer_question(question,db=DEFAULT_DB,*,llm=None,output_dir=None):
     if not isinstance(question,str) or not question.strip() or len(question)>2000:raise ValueError('问题为空或过长')
+    help_reply=local_help(question)
+    if help_reply is not None:return help_reply
     crew=make_crew(db,llm,output_dir=output_dir)
     result=crew.kickoff(inputs={'question':question})
     tool=crew.agents[0].tools[0]
