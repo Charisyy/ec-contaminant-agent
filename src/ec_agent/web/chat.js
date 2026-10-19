@@ -50,6 +50,11 @@
         encoded=JSON.stringify({version:1,activeId,sessions:values});
       }
       localStorage.setItem(STORE,encoded);
+      const retainedSessions=new Set(values.map(value=>value.id));
+      sessions=sessions.filter(value=>retainedSessions.has(value.id));
+      sessions.forEach(value=>{value.messages=value.messages.slice(-40);});
+      const retainedMessages=new Set(sessions.flatMap(value=>value.messages.map(message=>message.id)));
+      for(const id of rawResults.keys())if(!retainedMessages.has(id))rawResults.delete(id);
     }catch(_){$('#chat-live-status').textContent='浏览器未能保存记录；当前页面仍可继续对话。';}
   }
   function drawSessions(){
