@@ -17,8 +17,13 @@ def test_rejected_answer_preserves_real_tool_results(tmp_path,monkeypatch,query,
         kickoff=lambda **kwargs:SimpleNamespace(pydantic=bad))
     monkeypatch.setattr('ec_agent.crew.make_crew',lambda *args,**kwargs:crew)
     reply=answer_question('离线模拟同类校验错误')
-    assert reply['execution_mode']=='deterministic_fallback' and reply['llm_used'] is True
-    assert reply['model_answer_accepted'] is False and reply['model_validation']['code']==code
+    assert reply['llm_used'] is True
+    if run['entity_id']:
+        assert reply['execution_mode']=='deterministic_fallback'
+        assert reply['model_answer_accepted'] is False and reply['model_validation']['code']==code
+    else:
+        assert reply['execution_mode']=='directory_result'
+        assert reply['model_answer_accepted'] is None and reply['model_validation'] is None
     assert '伪造结论' not in str(reply) and 'fabricated' not in str(reply)
     assert reply['workflow_runs']==[run] and reply['risk_score'] is None
     if not run['entity_id']:

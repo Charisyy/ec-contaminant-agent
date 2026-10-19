@@ -106,7 +106,7 @@ def test_configured_adapter_executes_real_tools_against_mock_model(isolated_mode
                 reason='tool_calls'
             else:
                 message={'role':'assistant','content':json.dumps({'entity_ids':['EC0011'],
-                    'answer':'本地接口契约测试。','supported_findings':[],'source_urls':[],
+                    'answer':'本地接口契约测试。','supported_findings':[],'source_refs':[],
                     'missing_inputs':['真实服务仍需验证'],'risk_score':None},ensure_ascii=False)}
                 reason='stop'
             body=json.dumps({'id':'chatcmpl-fixture','object':'chat.completion','created':1,

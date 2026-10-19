@@ -145,7 +145,8 @@ class RunResearchWorkflowTool(CatalogTool):
         if pending is not None:return dumps(pending)
         result=run_entity_analysis(request.query,self.db_path,output_dir=self.output_dir,workflows=request.workflows)
         self._observations.append(result)
-        return dumps(result)
+        from .citations import citation_sources
+        return dumps({**result,'citation_sources':citation_sources(self._observations)})
 
 # Write operations are fixed batch-Flow steps, not free-form question tools.
 class AnalyzeCatalogTool(CatalogTool):

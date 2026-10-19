@@ -26,7 +26,7 @@ class OfflineContractLLM(BaseLLM):
         self.calls=0
     def call(self,messages,tools=None,callbacks=None,available_functions=None,**kwargs):
         self.calls+=1
-        payload={'entity_ids':['EC0872'],'answer':'离线接口契约测试：不是化学或毒性结论。','supported_findings':[],'source_urls':[],'missing_inputs':['需要真实模型验证自然语言效果'],'risk_score':None}
+        payload={'entity_ids':['EC0872'],'answer':'离线接口契约测试：不是化学或毒性结论。','supported_findings':[],'source_refs':[],'missing_inputs':['需要真实模型验证自然语言效果'],'risk_score':None}
         return 'Final Answer: '+json.dumps(payload,ensure_ascii=False)
     def supports_function_calling(self):return False
     def supports_stop_words(self):return False

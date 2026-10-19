@@ -81,6 +81,17 @@ def validated_tool_reply(observations,error):
         'model_validation':{'code':error.code,'message':error.public_message},
         'verification_scope':'模型解释未通过校验，已舍弃；此处仅整理本轮实际执行的固定工具结果。'}
 
+
+def directory_reply(observations):
+    """Directory status and choices are controlled by the actual lookup."""
+    if not observations:return None
+    if not any(run.get('status')=='needs_entity_selection' for run in observations) and not all(run.get('status')=='not_found' for run in observations):
+        return None
+    reply=validated_tool_reply(observations,AnswerValidationError('directory_state','目录状态'))
+    reply.update(execution_mode='directory_result',model_answer_accepted=None,model_validation=None,
+        verification_scope='目录状态与候选由实际检索结果生成；尚未定位明确实体，不提供实体级科学结论。')
+    return reply
+
 def local_help(question):
     normalized=re.sub(r'[\s，。！？!?.,；;：:]+','',question.casefold())
     greetings={'你好','您好','在吗','早上好','下午好','晚上好','hi','hello'}
