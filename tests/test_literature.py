@@ -54,7 +54,7 @@ def test_enriched_catalog_and_bounded_preview():
         assert first['total']>100 and len(first['rows'])==12 and first['truncated']
         assert not {r['id'] for r in first['rows']} & {r['id'] for r in second['rows']}
         assert detail(con,'EC0614',evidence_limit=12)['evidence_count']==first['total']
-        assert all(r['verification_level']=='database_curated' and not r['identity_confirmed'] for r in first['rows'])
+        assert all(r['verification_level'] in {'database_curated','full_text_checked_with_limits'} and not r['identity_confirmed'] for r in first['rows'])
         six=evidence_page(con,'EC0872')['rows']
         assert len(six)==3 and all(r['verification_level']=='full_text_checked' for r in six)
         assert {r['value'] for r in six}=={.59,1.,1.96}

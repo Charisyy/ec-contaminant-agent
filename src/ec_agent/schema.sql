@@ -66,3 +66,18 @@ CREATE TABLE IF NOT EXISTS pipeline_runs (
  id TEXT PRIMARY KEY, created_at TEXT NOT NULL, status TEXT NOT NULL,
  result_json TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS evidence_reviews (
+ id TEXT PRIMARY KEY, evidence_id TEXT NOT NULL REFERENCES evidence(id),
+ reviewed_at TEXT NOT NULL,
+ decision TEXT NOT NULL CHECK(decision IN ('verified','qualified','partial','excluded','unavailable','needs_review')),
+ review_json TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS evidence_review_latest ON evidence_reviews(evidence_id,reviewed_at DESC,id DESC);
+CREATE VIEW IF NOT EXISTS reviewed_evidence AS
+ SELECT v.*,r.decision review_decision,r.review_json,r.reviewed_at
+ FROM evidence v LEFT JOIN evidence_reviews r ON r.id=(
+  SELECT r2.id FROM evidence_reviews r2 WHERE r2.evidence_id=v.id
+  ORDER BY r2.reviewed_at DESC,r2.id DESC LIMIT 1
+ );
+CREATE VIEW IF NOT EXISTS usable_evidence AS
+ SELECT * FROM reviewed_evidence WHERE COALESCE(review_decision,'') NOT IN ('excluded','needs_review');

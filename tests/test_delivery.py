@@ -84,3 +84,15 @@ def test_literature_pagination_and_complete_csv(local_server):
     assert len(rows)==first['total'] and all(r['source_metadata'] for r in rows)
     with pytest.raises(urllib.error.HTTPError) as error:urllib.request.urlopen(local_server+'/api/evidence/DOESNOTEXIST')
     assert error.value.code==404
+
+def test_withheld_evidence_is_auditable_in_csv_not_in_usable_rows(local_server):
+    import csv,io
+    with urllib.request.urlopen(local_server+'/api/evidence/EC0270?limit=200') as r:page=json.load(r)
+    assert page['total']==100 and page['summary']['archived_total']==101
+    assert page['summary']['withheld_count']==1 and len(page['withheld_rows'])==1
+    assert 'ecotox-2337284-EC0270' not in {r['id'] for r in page['rows']}
+    with urllib.request.urlopen(local_server+'/api/evidence/EC0270?format=csv') as r:
+        rows=list(csv.DictReader(io.StringIO(r.read().decode('utf-8-sig'))))
+    assert len(rows)==101
+    row=next(r for r in rows if r['id']=='ecotox-2337284-EC0270')
+    assert row['review_decision']=='excluded' and '1000' in row['review_json']

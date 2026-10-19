@@ -88,7 +88,7 @@ def risk_results(con,entity_id):
     if entity[0]!='confirmed': return {'status':'identity_review_required','ratios':[],'reason':'尚未人工确认化学身份；不输出定量风险结论'}
     exposures=con.execute('SELECT * FROM exposures WHERE entity_id=?',(entity_id,)).fetchall()
     if not exposures: return {'status':'exposure_missing','ratios':[],'reason':'缺少实测暴露浓度；未知不等于低风险'}
-    evidence=con.execute("SELECT * FROM evidence WHERE entity_id=? AND evidence_type IN ('PNEC','aquatic_benchmark')",(entity_id,)).fetchall()
+    evidence=con.execute("SELECT * FROM usable_evidence WHERE entity_id=? AND evidence_type IN ('PNEC','aquatic_benchmark')",(entity_id,)).fetchall()
     ratios=[];blocked=[]
     for x in exposures:
         if not x['identity_confirmed'] or x['qualifier']!='=' or x['duration_class']=='unknown':
@@ -109,7 +109,7 @@ def risk_results(con,entity_id):
 def first_pass(con):
     report=[]
     for e in con.execute('SELECT e.*,s.analysis_status,s.clustering_eligible FROM entities e LEFT JOIN structures s ON s.id=e.selected_structure_id ORDER BY e.id'):
-        evidence=con.execute('SELECT count(*) FROM evidence WHERE entity_id=?',(e['id'],)).fetchone()[0]
+        evidence=con.execute('SELECT count(*) FROM usable_evidence WHERE entity_id=?',(e['id'],)).fetchone()[0]
         exposure=con.execute('SELECT count(*) FROM exposures WHERE entity_id=?',(e['id'],)).fetchone()[0]
         if e['entity_type']!='单体/命名实体': action='材料/混合物专项评价'
         elif not e['selected_structure_id']: action='补结构或确认多候选'

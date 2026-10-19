@@ -30,23 +30,35 @@ def select_result(test,result):
     return None
 
 def evidence_summary(con,entity_id):
-    counts={r[0]:r[1] for r in con.execute('SELECT evidence_type,count(*) FROM evidence WHERE entity_id=? GROUP BY evidence_type',(entity_id,))}
+    counts={r[0]:r[1] for r in con.execute('SELECT evidence_type,count(*) FROM usable_evidence WHERE entity_id=? GROUP BY evidence_type',(entity_id,))}
+    archived=con.execute('SELECT count(*) FROM evidence WHERE entity_id=?',(entity_id,)).fetchone()[0]
+    checked=con.execute("SELECT count(*) FROM usable_evidence WHERE entity_id=? AND (review_decision IN ('verified','qualified') OR CASE WHEN json_valid(notes) THEN json_extract(notes,'$.verification_level') END='full_text_checked')",(entity_id,)).fetchone()[0]
     return {'total':sum(counts.values()),'by_type':counts,
-        'literature_references':con.execute("SELECT count(DISTINCT source_id) FROM evidence WHERE entity_id=? AND evidence_type IN ('LC50','EC50','NOEC')",(entity_id,)).fetchone()[0],
-        'notice':'实验端点、评价基准分别保留；数据库整理记录尚未逐篇核对原文，CAS精确匹配不等于人工确认身份。'}
+        'archived_total':archived,'withheld_count':archived-sum(counts.values()),'full_text_checked_count':checked,
+        'literature_references':con.execute("SELECT count(DISTINCT source_id) FROM usable_evidence WHERE entity_id=? AND evidence_type IN ('LC50','EC50','NOEC')",(entity_id,)).fetchone()[0],
+        'notice':'实验端点、评价基准分别保留；逐条标注全文、摘要或待复核。复核排除/暂缓记录不进入可用证据；原始记录与复核依据仍保留。原文核对不等于身份已人工确认或研究质量已评级。'}
 
 def evidence_page(con,entity_id,page=1,limit=40):
     page=max(1,int(page));limit=max(1,min(int(limit),200));summary=evidence_summary(con,entity_id)
     rows=[dict(r) for r in con.execute('''SELECT v.*,s.url source_url,s.version source_version,s.accessed_at,s.content_sha256,
-        s.metadata_json source_metadata_json FROM evidence v JOIN sources s ON s.id=v.source_id WHERE v.entity_id=?
-        ORDER BY CASE WHEN s.kind='literature' THEN 0 ELSE 1 END,v.source_year DESC,v.source_id,v.id LIMIT ? OFFSET ?''',(entity_id,limit,(page-1)*limit))]
+        s.metadata_json source_metadata_json FROM usable_evidence v JOIN sources s ON s.id=v.source_id WHERE v.entity_id=?
+        ORDER BY CASE WHEN v.review_decision IN ('verified','qualified') OR s.kind='literature' THEN 0 ELSE 1 END,v.source_year DESC,v.source_id,v.id LIMIT ? OFFSET ?''',(entity_id,limit,(page-1)*limit))]
     for row in rows:
         metadata=json.loads(row.pop('source_metadata_json'));notes=json.loads(row['notes']) if row['notes'] and row['notes'].startswith('{') else {}
         row['reference']=metadata.get('reference',{})
         row['verification_level']=notes.get('verification_level',metadata.get('verification_level','regulatory_compilation'))
         row['observed_duration']=notes.get('observed_duration',{})
         row['concentration_basis']=notes.get('concentration_basis',{})
-    return {'rows':rows,'page':page,'limit':limit,'total':summary['total'],'truncated':page*limit<summary['total'],'summary':summary}
+        review=json.loads(row.pop('review_json') or '{}');row['review']=review
+        if review:
+            row['verification_level']=review['verification_level']
+            row['review_note']=review.get('display_note',review['conclusion'])
+            for field,value in review.get('display_overrides',{}).items():
+                if field not in {'endpoint','compartment','concentration_basis'}:raise ValueError('Unknown reviewed display field')
+                row['original_'+field]=row.get(field);row[field]=value
+    withheld=[dict(r) for r in con.execute("SELECT id,endpoint,evidence_type,value,unit,taxon,review_decision,review_json FROM reviewed_evidence WHERE entity_id=? AND review_decision IN ('excluded','needs_review') ORDER BY id LIMIT 40",(entity_id,))]
+    for r in withheld:r['review']=json.loads(r.pop('review_json'))
+    return {'rows':rows,'page':page,'limit':limit,'total':summary['total'],'truncated':page*limit<summary['total'],'summary':summary,'withheld_rows':withheld}
 
 def import_pack(path,db):
     """Atomic additive import. Existing records must match; catalog/reviews never change."""

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ec-catalog-agent"
-version = "0.2.10"
+version = "0.2.11"
 description = "Source-backed contaminant catalog and CrewAI chemistry workflow"
 requires-python = ">=3.11,<3.14"
 dependencies = ["crewai>=1.15.28,<2", "rdkit>=2026.9"]

@@ -22,6 +22,7 @@ def main():
     exposure=sub.add_parser('import-exposures');exposure.add_argument('csv')
     evidence=sub.add_parser('import-evidence');evidence.add_argument('csv')
     literature=sub.add_parser('import-literature');literature.add_argument('pack')
+    reviews=sub.add_parser('import-evidence-reviews');reviews.add_argument('pack')
     args=parser.parse_args()
     if args.command=='run':
         from .workflow import CatalogFlow
@@ -47,5 +48,8 @@ def main():
     elif args.command=='import-literature':
         from .literature import import_pack
         print(dumps(import_pack(args.pack,args.db)))
+    elif args.command=='import-evidence-reviews':
+        from .evidence_review import apply_reviews
+        print(dumps(apply_reviews(args.pack,args.db)))
 
 if __name__=='__main__':main()

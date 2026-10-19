@@ -42,6 +42,9 @@ class CatalogFlow(Flow[CatalogState]):
         from .literature import import_pack
         pack=PROJECT/'inputs/literature_evidence_20261019.jsonl.gz'
         if pack.exists():self.state.stages['literature']=import_pack(pack,self.state.db_path)
+        from .evidence_review import apply_reviews
+        reviews=PROJECT/'inputs/literature_review_20261019.json'
+        if reviews.exists():self.state.stages['evidence_reviews']=apply_reviews(reviews,self.state.db_path)
         return self.state.stages['evidence']
 
     @listen(attach_source_backed_evidence)

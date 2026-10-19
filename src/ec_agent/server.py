@@ -19,6 +19,8 @@ def environment_status():
 def create_server(db=DEFAULT_DB,port=8765):
     db=Path(db)
     if not db.exists():raise FileNotFoundError('缺少 data/catalog.sqlite，请完整解压项目。')
+    from .evidence_review import ensure_review_schema
+    ensure_review_schema(db)
     log_dir=PROJECT/'outputs/logs';log_dir.mkdir(parents=True,exist_ok=True)
     logger=logging.getLogger('ec_agent.http')
     if not logger.handlers:
@@ -80,7 +82,7 @@ def create_server(db=DEFAULT_DB,port=8765):
                         if not con.execute('SELECT 1 FROM entities WHERE id=?',(eid,)).fetchone():return self.send({'error':'实体不存在'},404)
                         if q('format')=='csv':
                             buf=io.StringIO(newline='');writer=csv.writer(buf)
-                            cur=con.execute('''SELECT v.*,s.url source_url,s.version source_version,s.metadata_json source_metadata FROM evidence v
+                            cur=con.execute('''SELECT v.*,s.url source_url,s.version source_version,s.metadata_json source_metadata FROM reviewed_evidence v
                                 JOIN sources s ON s.id=v.source_id WHERE v.entity_id=? ORDER BY v.id''',(eid,))
                             writer.writerow([c[0] for c in cur.description])
                             for row in cur:writer.writerow(["'"+v if isinstance(v,str) and v.lstrip().startswith(('=','+','-','@')) else v for v in row])

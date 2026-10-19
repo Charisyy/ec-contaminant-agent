@@ -49,8 +49,10 @@ def stats(con):
         "unique_structures": one("SELECT count(DISTINCT selected_structure_id) FROM entities WHERE selected_structure_id IS NOT NULL"),
         "experiment_candidates": one("SELECT count(*) FROM entities WHERE experiment_candidate=1"),
         "measured": one("SELECT count(*) FROM entities WHERE measured=1"),
-        "evidence_entities": one("SELECT count(DISTINCT entity_id) FROM evidence"),
-        "evidence_records": one("SELECT count(*) FROM evidence"),
+        "evidence_entities": one("SELECT count(DISTINCT entity_id) FROM usable_evidence"),
+        "evidence_records": one("SELECT count(*) FROM usable_evidence"),
+        "evidence_records_archived": one("SELECT count(*) FROM evidence"),
+        "evidence_records_withheld": one("SELECT count(*) FROM evidence")-one("SELECT count(*) FROM usable_evidence"),
         "exposure_records": one("SELECT count(*) FROM exposures"),
         "eligible_entities": one("SELECT count(*) FROM entities e JOIN structures s ON s.id=e.selected_structure_id WHERE s.clustering_eligible=1"),
         "categories": [dict(r) for r in con.execute("SELECT category name,count(*) count FROM entities GROUP BY category ORDER BY count(*) DESC")],
@@ -92,7 +94,7 @@ def search(con, q="", category="", experiment="", measured="", structure="", run
     sql="""SELECT e.id,e.name,e.cas,e.english_name,e.category,e.subcategory,e.entity_type,e.measured,
        e.experiment_candidate,e.identity_status,e.human_review,e.issue,s.formula,s.analysis_status,
        s.clustering_eligible,s.exclusion_reason,s.features_json,
-       (SELECT count(*) FROM evidence v WHERE v.entity_id=e.id) evidence_count
+       (SELECT count(*) FROM usable_evidence v WHERE v.entity_id=e.id) evidence_count
        FROM entities e LEFT JOIN structures s ON s.id=e.selected_structure_id WHERE """+where+" ORDER BY e.id LIMIT ? OFFSET ?"
     rows=[dict(r) for r in con.execute(sql,args+[limit,(page-1)*limit])]
     for r in rows:
@@ -110,6 +112,7 @@ def detail(con, entity_id, evidence_limit=40):
     evidence=evidence_page(con,entity_id,limit=evidence_limit)
     result['evidence']=evidence['rows'];result['evidence_count']=evidence['total']
     result['evidence_summary']=evidence['summary'];result['evidence_truncated']=evidence['truncated']
+    result['withheld_evidence']=evidence['withheld_rows']
     result["exposures"]=[dict(r) for r in con.execute("SELECT * FROM exposures WHERE entity_id=?",(entity_id,))]
     result["clusters"]=[dict(r) for r in con.execute("SELECT m.* FROM cluster_members m JOIN structures s ON s.parent_key=m.parent_key WHERE s.id=?",(result["selected_structure_id"],))]
     result["related_entities"]=[dict(r) for r in con.execute("SELECT id,name,cas FROM entities WHERE selected_structure_id=? AND id<>?",(result["selected_structure_id"],entity_id))] if result["selected_structure_id"] else []

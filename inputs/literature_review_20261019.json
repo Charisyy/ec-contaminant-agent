@@ -1,0 +1,1962 @@
+{
+  "format": "ec-evidence-review-v1",
+  "batch_id": "20261019A",
+  "reviewed_at": "2026-10-19T07:44:08.733397+00:00",
+  "scope": "First primary-paper review batch, not a full review of the catalog",
+  "reviews": [
+    {
+      "id": "R20261019A-ecotox-2047276-EC0391",
+      "evidence_id": "ecotox-2047276-EC0391",
+      "evidence_sha256": "dd486acf102c979d3061859d04fc67e316ddcaa51af8d2aa8be058c7565392c5",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047276"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047284-EC0391",
+      "evidence_id": "ecotox-2047284-EC0391",
+      "evidence_sha256": "2ce9058dc6d13519e00c4e020c1ff3920f2a69d4ceab22ad9898db0f0d139643",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047284"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047290-EC0417",
+      "evidence_id": "ecotox-2047290-EC0417",
+      "evidence_sha256": "af34028ea3f6470ecea8ef6f23e3b6e657eda9463e551e0170736ec285ec2947",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047290"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047294-EC0417",
+      "evidence_id": "ecotox-2047294-EC0417",
+      "evidence_sha256": "f5be35037cf0c6ccf374287fe4b4aa1792037d87063c8138fa4dc78c036fae4a",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047294"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047300-EC0395",
+      "evidence_id": "ecotox-2047300-EC0395",
+      "evidence_sha256": "122fcc6a8d2fd8d00b87525d5596cc48b1c376c3f758fc9b060374e43b79da82",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047300"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047301-EC0395",
+      "evidence_id": "ecotox-2047301-EC0395",
+      "evidence_sha256": "1ae844cdfae336a359443dcb68ecd1324470929d1df5f7679e2bb500162e8cea",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047301"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047302-EC0322",
+      "evidence_id": "ecotox-2047302-EC0322",
+      "evidence_sha256": "2c5862501417dd7c3311c2f194664c95e52005c772168a04ddf9407b5011e46b",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047302"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047303-EC0322",
+      "evidence_id": "ecotox-2047303-EC0322",
+      "evidence_sha256": "456b18b31c54575cea1d813c7a5cf8f52df898e167401b4085c4b00c374ea18b",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047303"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047304-EC0457",
+      "evidence_id": "ecotox-2047304-EC0457",
+      "evidence_sha256": "94bda80a46af78d4fb9126cb2a0c0958b13c70e0034e87d517f220df0e06497f",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047304"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047305-EC0457",
+      "evidence_id": "ecotox-2047305-EC0457",
+      "evidence_sha256": "caecef5c28734a3d7aa89e2cc2dfcf45760c312cf722bc928082fc5ae2f2623a",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047305"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047306-EC0309",
+      "evidence_id": "ecotox-2047306-EC0309",
+      "evidence_sha256": "6155be7449957bd2689a3159db15f29961190f02cd716e943e67ae0fe43f3e19",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047306"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047308-EC0309",
+      "evidence_id": "ecotox-2047308-EC0309",
+      "evidence_sha256": "0bff4f746d80091bdef6e71403916e8612efe11b703256064adab583c84ae891",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047308"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047322-EC0368",
+      "evidence_id": "ecotox-2047322-EC0368",
+      "evidence_sha256": "84a26f0ac7e94dccbc252ad7d3f6c8d2023cee480928fb5445ca5e1178cc5e38",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047322"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047326-EC0368",
+      "evidence_id": "ecotox-2047326-EC0368",
+      "evidence_sha256": "021d0a34d136e8f63101fe0ce4c023915e6f09e44c2130a8607bb0bb3528c78b",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047326"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047327-EC1138",
+      "evidence_id": "ecotox-2047327-EC1138",
+      "evidence_sha256": "3a4f93954f62fa27c00916261caf90595dfcc11eab9a7f0d9771126c0a2fd53d",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047327"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047328-EC1138",
+      "evidence_id": "ecotox-2047328-EC1138",
+      "evidence_sha256": "995fdf5b309626546bb35fb15e0bbba02fbde59c92e61b9d129c326f140f8d0a",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047328"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047329-EC0360",
+      "evidence_id": "ecotox-2047329-EC0360",
+      "evidence_sha256": "298d5ab2a6276f382752699b25ffa431a9028c81c21b3ed2fcb38d2e80ef5005",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047329"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047329-EC0880",
+      "evidence_id": "ecotox-2047329-EC0880",
+      "evidence_sha256": "2576946b93e926ca5fe6818f198915c911aa91844ce4241678accbcd45e4922c",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047329"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047330-EC0360",
+      "evidence_id": "ecotox-2047330-EC0360",
+      "evidence_sha256": "adfa7813b941fc0988bd6f18ed7373d0aedb95f8953b241bf429d23e52919d74",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047330"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047330-EC0880",
+      "evidence_id": "ecotox-2047330-EC0880",
+      "evidence_sha256": "8d46e33e6d996fe9ec3a4105eb71718cd9e96fde577087e2467bd6698afd5102",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047330"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047331-EC0331",
+      "evidence_id": "ecotox-2047331-EC0331",
+      "evidence_sha256": "5a4d4d185941dc1d084422dcc1e4120ed8d6939fb805e9f373f5757cac133ef3",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047331"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047332-EC0331",
+      "evidence_id": "ecotox-2047332-EC0331",
+      "evidence_sha256": "6d834a0f930de6940d3002a3917013325df54078bf89209450db206cd1e90612",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047332"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047333-EC0883",
+      "evidence_id": "ecotox-2047333-EC0883",
+      "evidence_sha256": "8f2c2fb9fb250436f5b2f5bafee3029fd3335686e64271dbd743fc3c6a3f7561",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047333"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047334-EC0883",
+      "evidence_id": "ecotox-2047334-EC0883",
+      "evidence_sha256": "0bf18a798cb793eb7722b017634b2157c2b4349571909baaa2c2eddfb80477fe",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047334"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047335-EC0270",
+      "evidence_id": "ecotox-2047335-EC0270",
+      "evidence_sha256": "04aba9939430a30f7cdab2caa818436c556fdbf92ab5501f69f01e3fb0eda864",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原文称LC50；甲壳类实际按不能活动判定，不能描述成观察到50%死亡。名义配制浓度，非实测浓度。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；不能活动端点） · 24 h · ECOTOX 2047335"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2047336-EC0270",
+      "evidence_id": "ecotox-2047336-EC0270",
+      "evidence_sha256": "15efafb3b0e94bb46049a3ab8efbe1cbeaa9044f8a9040564f82201f9d58016f",
+      "decision": "verified",
+      "verification_level": "full_text_checked",
+      "source_url": "https://www.jstage.jst.go.jp/article/jts/34/2/34_2_227/_pdf/-char/en",
+      "document_sha256": "0ee2b35ee3ccffe7be427a5cefebd18a8d5722ff62c866f9100622688cecad1a",
+      "locations": [
+        "Table 1, p.230 (PDF p.4)",
+        "Methods, pp.228–229 (PDF pp.2–3)"
+      ],
+      "conclusion": "化合物表列CAS、物种、生命阶段、数值、单位、限定符及观察时长与原文一致。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "幼鱼死亡端点，名义配制浓度；>100是下限，不能写成LC50=100或安全。",
+      "checked_fields": [
+        "表列CAS与目录CAS",
+        "物种",
+        "无节幼体/孵化不足24h幼鱼",
+        "24h/96h",
+        "数值与限定符",
+        "mg/L",
+        "未实测的配制浓度",
+        "不能活动/死亡判定标准"
+      ],
+      "display_overrides": {
+        "endpoint": "LC50（原文名称；死亡端点） · 96 h · ECOTOX 2047336"
+      },
+      "limitations": [
+        "不能据此确认目录实物或标准品身份；同一来源结果关联多个目录实体时不作为独立实验。",
+        "未独立复算probit模型或审核原始个体数据。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2337280-EC0270",
+      "evidence_id": "ecotox-2337280-EC0270",
+      "evidence_sha256": "592ab578c4067ac1a4ea354c6e975797e11230bd99479c08ca0e747538088699",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337281-EC0270",
+      "evidence_id": "ecotox-2337281-EC0270",
+      "evidence_sha256": "8db898c867060737ed6065af8ef50d0766048a09466ff1f1969bc41db1c73484",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337282-EC0270",
+      "evidence_id": "ecotox-2337282-EC0270",
+      "evidence_sha256": "c6278aaff64eb749b62fb63afeeee91827e805af4ac7b36da4fb6388db40377b",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337283-EC0270",
+      "evidence_id": "ecotox-2337283-EC0270",
+      "evidence_sha256": "4f7b129bd9681780f8ef399e07e5ab4cab101842d9b9fb20415f1919994a7bbd",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337284-EC0270",
+      "evidence_id": "ecotox-2337284-EC0270",
+      "evidence_sha256": "08370d333fa8a83839c57c036bc299724467ef61fe5b90735b384908efd13d04",
+      "decision": "excluded",
+      "verification_level": "excluded_after_review",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Discussion, pp.409–410 (PDF pp.4–5)"
+      ],
+      "conclusion": "作者将96h LC50除以1000得到此派生值，虽称NOEC，但不是实验统计得到的NOEC。退出可用实验端点集合，不自动改成PNEC。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "派生值：LC50/1000；已从可用实验证据排除。",
+      "data_origin": "author_derived",
+      "derivation": "96 h LC50 / assessment factor 1000"
+    },
+    {
+      "id": "R20261019A-ecotox-2337287-EC0347",
+      "evidence_id": "ecotox-2337287-EC0347",
+      "evidence_sha256": "76ec8c5160b764594a3692c140344122ef0ce9f9096cbd977a242a81dfc71c7e",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337288-EC0347",
+      "evidence_id": "ecotox-2337288-EC0347",
+      "evidence_sha256": "8374dbf1d29cb2ab99b7890bd3f18438eb0c9d64c54ae13dca38c79a09f9e03c",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337289-EC0347",
+      "evidence_id": "ecotox-2337289-EC0347",
+      "evidence_sha256": "c7926ee71544e4b2a873a78b4c3c2cfe13d4f0f97c9ab42d7e944640b8dc7783",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337290-EC0347",
+      "evidence_id": "ecotox-2337290-EC0347",
+      "evidence_sha256": "a8cd7d7777d7cdb9541cf65229091ff38f77c60b367c8ef0500ed3c9b2e52ed6",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337291-EC0347",
+      "evidence_id": "ecotox-2337291-EC0347",
+      "evidence_sha256": "066dd47304dbe0935ccc8faeaf2c005186de173557caa7bbf364d8f8900eeb8a",
+      "decision": "excluded",
+      "verification_level": "excluded_after_review",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Discussion, pp.409–410 (PDF pp.4–5)"
+      ],
+      "conclusion": "作者将96h LC50除以1000得到此派生值，虽称NOEC，但不是实验统计得到的NOEC。退出可用实验端点集合，不自动改成PNEC。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "派生值：LC50/1000；已从可用实验证据排除。",
+      "data_origin": "author_derived",
+      "derivation": "96 h LC50 / assessment factor 1000"
+    },
+    {
+      "id": "R20261019A-ecotox-2337293-EC0322",
+      "evidence_id": "ecotox-2337293-EC0322",
+      "evidence_sha256": "cd365719c95340811df8003c0123aec697806bb7d7f805d04b5beffc99cb492f",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337294-EC0322",
+      "evidence_id": "ecotox-2337294-EC0322",
+      "evidence_sha256": "8060798c612f1bebac0f859f2d31a95b55bee179921c60178991826ff73f4760",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337295-EC0322",
+      "evidence_id": "ecotox-2337295-EC0322",
+      "evidence_sha256": "964552597aa456abb1737d234c98ba0967655bc872454003e6ff5d5821c54167",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337296-EC0322",
+      "evidence_id": "ecotox-2337296-EC0322",
+      "evidence_sha256": "37e2ec920aa239b1cffea4d34b25527e7596032058714f74a5f4bd6f420235f0",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Table 1, p.409 (PDF p.4)",
+        "Methods, p.408 (PDF p.3)"
+      ],
+      "conclusion": "成鱼LC50数值、单位及24/48/72/96h时长与表1一致。原文介质写为artificial seawater且盐度0.035 psu，表述需澄清，不能直接确认为淡水或海水。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "成鱼、名义配制浓度。原文盐度/介质表述需澄清，暂列水相（介质待确认）。表1为mean±SD，非95%置信区间。",
+      "checked_fields": [
+        "物种与成鱼阶段",
+        "LC50数值",
+        "mg/L",
+        "观察时长",
+        "mean±SD（n=3）",
+        "配制浓度、48h换水"
+      ],
+      "unresolved_fields": [
+        "试验介质/盐度表述",
+        "具体化学形式未由CAS独立确认"
+      ],
+      "display_overrides": {
+        "compartment": "water_unspecified"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2337297-EC0322",
+      "evidence_id": "ecotox-2337297-EC0322",
+      "evidence_sha256": "b964b4b2cac1b70876119e52f73abfd0a7a48df8ffcd663d6d3751d02ad6075e",
+      "decision": "excluded",
+      "verification_level": "excluded_after_review",
+      "source_url": "https://api.lib.kyushu-u.ac.jp/opac_download_md/16123/54_2_p407.pdf",
+      "document_sha256": "1d992025daebce22b71d67c1b744da0e57e668903dee987a07fc504988d058fc",
+      "locations": [
+        "Discussion, pp.409–410 (PDF pp.4–5)"
+      ],
+      "conclusion": "作者将96h LC50除以1000得到此派生值，虽称NOEC，但不是实验统计得到的NOEC。退出可用实验端点集合，不自动改成PNEC。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "派生值：LC50/1000；已从可用实验证据排除。",
+      "data_origin": "author_derived",
+      "derivation": "96 h LC50 / assessment factor 1000"
+    },
+    {
+      "id": "R20261019A-ecotox-2377917-EC0614",
+      "evidence_id": "ecotox-2377917-EC0614",
+      "evidence_sha256": "34c90b1875ce4bca4145a15c2b4aa3639c6d2db0b41c056ffb3c7df26895382b",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://pp.bme.hu/ch/article/download/8077/6783/15068",
+      "document_sha256": "b79312725514b642d49e0a45f537e7c4a2d85fd37ed19ce7d4d5bad2a0b504e8",
+      "locations": [
+        "Fig.2b, p.267 (PDF p.6)",
+        "Tables 2 and 4; Methods 2.5–2.6"
+      ],
+      "conclusion": "数值对应原图中最高未标显著差异的剂量，下一剂量为LOEC；NOEC是数据库依据原图归纳，作者正文主要表列LOEC。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "小浮萍7天总叶绿素，名义浓度。此NOEC由原图归纳，非作者表列NOEC；不代表其他端点无效应。",
+      "checked_fields": [
+        "化学品CAS",
+        "Lemna minor、两叶阶段",
+        "7天",
+        "mg/L",
+        "图示剂量与显著性标记",
+        "未实测配制浓度"
+      ],
+      "data_origin": "curator_inferred_from_figure",
+      "display_overrides": {
+        "endpoint": "NOEC（数据库据原图归纳） · 总叶绿素 · 7 d"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2377926-EC0863",
+      "evidence_id": "ecotox-2377926-EC0863",
+      "evidence_sha256": "85d05d9097d16021297808785d735ae23aa4e28e6ffc5cc3341d1e18271348d9",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://pp.bme.hu/ch/article/download/8077/6783/15068",
+      "document_sha256": "b79312725514b642d49e0a45f537e7c4a2d85fd37ed19ce7d4d5bad2a0b504e8",
+      "locations": [
+        "Fig.3h, p.268 (PDF p.7)",
+        "Tables 2 and 4; Methods 2.5–2.6"
+      ],
+      "conclusion": "数值对应原图中最高未标显著差异的剂量，下一剂量为LOEC；NOEC是数据库依据原图归纳，作者正文主要表列LOEC。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "小浮萍7天总叶绿素，名义浓度。此NOEC由原图归纳，非作者表列NOEC；不代表其他端点无效应。",
+      "checked_fields": [
+        "化学品CAS",
+        "Lemna minor、两叶阶段",
+        "7天",
+        "mg/L",
+        "图示剂量与显著性标记",
+        "未实测配制浓度"
+      ],
+      "data_origin": "curator_inferred_from_figure",
+      "display_overrides": {
+        "endpoint": "NOEC（数据库据原图归纳） · 总叶绿素 · 7 d"
+      }
+    },
+    {
+      "id": "R20261019A-ecotox-2294438-EC0285",
+      "evidence_id": "ecotox-2294438-EC0285",
+      "evidence_sha256": "84647a5d1bfd6dd22930c2c1ab9251688d1584e874821616745982af3f04586e",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3404660/fullTextXML",
+      "document_sha256": "569004ea91cb934f1ef1ddad2b44c62ea6d52b071e707419ca077e56edbc92b5",
+      "locations": [
+        "Methods: Analysis of EE2 in exposure water",
+        "Figure 3B,G,K,M; Results: Sensitivity"
+      ],
+      "conclusion": "原图Western blot统计与库中NOEC数值相容，但该归纳限定为整体GFP定量；局部组织荧光检测阈值不能当成无效应阈值。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "仅对应整体GFP蛋白定量未达统计显著，原图的局部组织已出现GFP响应，不能概括为没有雌激素效应。 本条0.72 ng/L为文中实测浓度，对应名义1 ng/L。",
+      "checked_fields": [
+        "化合物名称",
+        "转基因Danio rerio胚胎",
+        "数值、单位",
+        "整体GFP定量显著性",
+        "实测/名义浓度区别"
+      ],
+      "data_origin": "curator_inferred_quantitative_endpoint",
+      "display_overrides": {
+        "endpoint": "NOEC（数据库归纳；整体GFP蛋白定量） · 约4天",
+        "concentration_basis": {
+          "analysis_code": "M",
+          "analysis_description": "文中实测0.72 ng/L（名义1 ng/L）",
+          "original_ecotox_analysis_code": "X"
+        }
+      },
+      "additional_document_sha256": {
+        "Figure 3": "1aacf065280cc135e68cf17bf03ed529b0f70b044ef76b575c37eaa04d48d3d9"
+      },
+      "limitations": [
+        "原文按受精后天数描述，数据库归纳为96h；保留近似时长语义。",
+        "不把局部组织已有响应解释为总体无效应。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2294441-EC0614",
+      "evidence_id": "ecotox-2294441-EC0614",
+      "evidence_sha256": "cdd4140d7beccacb2fed3e3ba14f59b094abf99e60cd1c5054ecd680dac603e7",
+      "decision": "qualified",
+      "verification_level": "full_text_checked_with_limits",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3404660/fullTextXML",
+      "document_sha256": "569004ea91cb934f1ef1ddad2b44c62ea6d52b071e707419ca077e56edbc92b5",
+      "locations": [
+        "Methods: Analysis of EE2 in exposure water",
+        "Figure 3B,G,K,M; Results: Sensitivity"
+      ],
+      "conclusion": "原图Western blot统计与库中NOEC数值相容，但该归纳限定为整体GFP定量；局部组织荧光检测阈值不能当成无效应阈值。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "仅对应整体GFP蛋白定量未达统计显著，原图的局部组织已出现GFP响应，不能概括为没有雌激素效应。 BPA 100 ug/L为名义浓度，未确认实测值。",
+      "checked_fields": [
+        "化合物名称",
+        "转基因Danio rerio胚胎",
+        "数值、单位",
+        "整体GFP定量显著性",
+        "实测/名义浓度区别"
+      ],
+      "data_origin": "curator_inferred_quantitative_endpoint",
+      "display_overrides": {
+        "endpoint": "NOEC（数据库归纳；整体GFP蛋白定量） · 约4天"
+      },
+      "additional_document_sha256": {
+        "Figure 3": "1aacf065280cc135e68cf17bf03ed529b0f70b044ef76b575c37eaa04d48d3d9"
+      },
+      "limitations": [
+        "原文按受精后天数描述，数据库归纳为96h；保留近似时长语义。",
+        "不把局部组织已有响应解释为总体无效应。"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168511-EC1199",
+      "evidence_id": "ecotox-2168511-EC1199",
+      "evidence_sha256": "0171b6714a89720016efd420fb3697afb36b4550e22dd1bff8d932a42d31f2d3",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168515-EC1199",
+      "evidence_id": "ecotox-2168515-EC1199",
+      "evidence_sha256": "a787bf7cb273ee415d8c796aed10bd902e96edc3b062ecb95b4a7a5db298ca44",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168547-EC1199",
+      "evidence_id": "ecotox-2168547-EC1199",
+      "evidence_sha256": "6168e8b5e4aba75f96d6cb43beda3267dc2197290564b77518b34ad6f60206bf",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168550-EC1199",
+      "evidence_id": "ecotox-2168550-EC1199",
+      "evidence_sha256": "6533e45d067d122a4f4d0d5ec4f820ebb52455e96e9512c1939d95579c5e19bc",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168551-EC1199",
+      "evidence_id": "ecotox-2168551-EC1199",
+      "evidence_sha256": "5a4b50a07f5ad826c77ce6a05c33cee4bd474aadf6668960ab165f3a17dd7f03",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168554-EC1199",
+      "evidence_id": "ecotox-2168554-EC1199",
+      "evidence_sha256": "7fd432a05fc2e849609413e0d156877bc82d1d564aa48f6d250b588ee9a80b3d",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168555-EC1199",
+      "evidence_id": "ecotox-2168555-EC1199",
+      "evidence_sha256": "6fa9df5ca7f2be6d323a10447e1a4b1bc5a3e56f588d11f110a021305912ca96",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168558-EC1199",
+      "evidence_id": "ecotox-2168558-EC1199",
+      "evidence_sha256": "86a2f792fc341636d78b67815611a663153d09cc3b27c5db77423f3016032d1e",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168567-EC0218",
+      "evidence_id": "ecotox-2168567-EC0218",
+      "evidence_sha256": "e73df08c4a2170bac064ab134d9f692790bc8f46326744f151f4c4b4daf9e229",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168570-EC0218",
+      "evidence_id": "ecotox-2168570-EC0218",
+      "evidence_sha256": "add9b63a76e87c855cc327fdd89b0498b0c4555c0a4cc55be5c78cfd685c2853",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168576-EC0218",
+      "evidence_id": "ecotox-2168576-EC0218",
+      "evidence_sha256": "ffa8f09b15b126cb873f897ca125bdfd0cd9ac6273f7c2f90d93f568815c4f94",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168579-EC0218",
+      "evidence_id": "ecotox-2168579-EC0218",
+      "evidence_sha256": "11fe9846853a09d7733331e1d6f393cc013b9a5e4287869393423b4eae3e47e2",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168582-EC0218",
+      "evidence_id": "ecotox-2168582-EC0218",
+      "evidence_sha256": "cde89a96900fed5de0cd35663be89a35cdb08ee715be3e09c2ce2ba85a254225",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168585-EC0218",
+      "evidence_id": "ecotox-2168585-EC0218",
+      "evidence_sha256": "36516d1841228c78dd735f69119fa4dc231ebf5eaad97ec2e10dc4d8165bb1b5",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2168586-EC0218",
+      "evidence_id": "ecotox-2168586-EC0218",
+      "evidence_sha256": "2426432ebac6538dd63ed3b23a79c12077baacdb72828c36d290322ce5dfed43",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC的数值，不能据EC50一致推定NOEC也已核对。保留原文待复核状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "本条NOEC未在摘要中给出；全文暂不可获取，仍待复核。"
+    },
+    {
+      "id": "R20261019A-ecotox-2168589-EC0218",
+      "evidence_id": "ecotox-2168589-EC0218",
+      "evidence_sha256": "854300dc060f619c465fe71082f7958f7b26ea24f6428fef479a9f36d1f4aa54",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.rsc.org/en/content/articlelanding/2012/em/c2em30037k",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "作者摘要可逐物种核对EC50数值及单位；全文本次无法取得，具体时长、测量依据和化学形式尚未复核。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要已核对物种、EC50数值及mg/L；时长、浓度依据及化学形式仍待全文。",
+      "checked_fields": [
+        "物种",
+        "EC50数值",
+        "mg/L"
+      ],
+      "unresolved_fields": [
+        "时长",
+        "浓度实测依据",
+        "化学形式",
+        "完整方法"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2011793-EC0476",
+      "evidence_id": "ecotox-2011793-EC0476",
+      "evidence_sha256": "2f426de6c398810112c14bfc2763641624b08ef1411ab46a307e83f48b0184fb",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.acs.org/doi/abs/10.1021/es801611a",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "摘要支持Lemna gibba三个不同响应的EC50数值及ug/L单位。摘要没有明确支持本条7天时长或浓度分析依据，仍待全文。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要数值已核对；叶片数、鲜重、pABA为不同响应，不合并为一个EC50。时长和浓度依据待全文。",
+      "checked_fields": [
+        "Lemna gibba",
+        "数值",
+        "ug/L",
+        "叶片数/鲜重/pABA的区别"
+      ],
+      "unresolved_fields": [
+        "7天时长",
+        "实测/名义浓度",
+        "原始化学形式"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2011799-EC0476",
+      "evidence_id": "ecotox-2011799-EC0476",
+      "evidence_sha256": "c0b58cc26f182c254ffdca0566ba2a6b51170eafffb5fd87ee09d2bb55889473",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.acs.org/doi/abs/10.1021/es801611a",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "摘要支持Lemna gibba三个不同响应的EC50数值及ug/L单位。摘要没有明确支持本条7天时长或浓度分析依据，仍待全文。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要数值已核对；叶片数、鲜重、pABA为不同响应，不合并为一个EC50。时长和浓度依据待全文。",
+      "checked_fields": [
+        "Lemna gibba",
+        "数值",
+        "ug/L",
+        "叶片数/鲜重/pABA的区别"
+      ],
+      "unresolved_fields": [
+        "7天时长",
+        "实测/名义浓度",
+        "原始化学形式"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2011853-EC0476",
+      "evidence_id": "ecotox-2011853-EC0476",
+      "evidence_sha256": "9ddd48aebb3a3f1a5b23755a92eec6a8e9e71160126453d2d97769387efbdfed",
+      "decision": "partial",
+      "verification_level": "abstract_checked",
+      "source_url": "https://pubs.acs.org/doi/abs/10.1021/es801611a",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract"
+      ],
+      "conclusion": "摘要支持Lemna gibba三个不同响应的EC50数值及ug/L单位。摘要没有明确支持本条7天时长或浓度分析依据，仍待全文。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "摘要数值已核对；叶片数、鲜重、pABA为不同响应，不合并为一个EC50。时长和浓度依据待全文。",
+      "checked_fields": [
+        "Lemna gibba",
+        "数值",
+        "ug/L",
+        "叶片数/鲜重/pABA的区别"
+      ],
+      "unresolved_fields": [
+        "7天时长",
+        "实测/名义浓度",
+        "原始化学形式"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-2012624-EC0476",
+      "evidence_id": "ecotox-2012624-EC0476",
+      "evidence_sha256": "4daa22ac2d27b7d84661634ffe3a63653c55b13913caa912ef62de0232d8cc81",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.acs.org/doi/abs/10.1021/es801611a",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC数值，继续保留原文待复核，不因同篇EC50摘要吻合而提高状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级"
+    },
+    {
+      "id": "R20261019A-ecotox-2012625-EC0476",
+      "evidence_id": "ecotox-2012625-EC0476",
+      "evidence_sha256": "c62099f435b61c787504900fcad48bf09868693cfb0731e7b6a814994539f78d",
+      "decision": "unavailable",
+      "verification_level": "database_curated",
+      "source_url": "https://pubs.acs.org/doi/abs/10.1021/es801611a",
+      "document_sha256": null,
+      "locations": [
+        "Publisher abstract / full text unavailable"
+      ],
+      "conclusion": "摘要没有本条NOEC数值，继续保留原文待复核，不因同篇EC50摘要吻合而提高状态。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级"
+    },
+    {
+      "id": "R20261019A-ecotox-91517-EC1190",
+      "evidence_id": "ecotox-91517-EC1190",
+      "evidence_sha256": "abbf4c5ddee4d37aef3d5586326e1a3b4a97b28329632d6859d0d405be6e13bb",
+      "decision": "needs_review",
+      "verification_level": "provenance_check_required",
+      "source_url": "https://doi.org/10.1016/S0166-445X(85)80002-3",
+      "document_sha256": null,
+      "locations": [
+        "ECOTOX original result comment: O EFCT CONT/QSAR//"
+      ],
+      "conclusion": "原始注释提及QSAR，其角色尚未核实；不能据关键词断定为预测或实验。暂缓进入可用实验证据，保留原始值等待全文判断。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原始注释涉及QSAR，来源性质未定；暂缓，不宣称已证实为预测值。",
+      "checked_fields": [
+        "原始数据库注释"
+      ],
+      "unresolved_fields": [
+        "数值来自实验还是模型/相关分析"
+      ]
+    },
+    {
+      "id": "R20261019A-ecotox-91518-EC1190",
+      "evidence_id": "ecotox-91518-EC1190",
+      "evidence_sha256": "8d5cb7734ff7db60d62c4c29adb89d7c689074aa23e5ece180a23d7a2fe1cd39",
+      "decision": "needs_review",
+      "verification_level": "provenance_check_required",
+      "source_url": "https://doi.org/10.1016/S0166-445X(85)80002-3",
+      "document_sha256": null,
+      "locations": [
+        "ECOTOX original result comment: O EFCT CONT/QSAR//"
+      ],
+      "conclusion": "原始注释提及QSAR，其角色尚未核实；不能据关键词断定为预测或实验。暂缓进入可用实验证据，保留原始值等待全文判断。",
+      "identity_confirmed": false,
+      "quality_assessment": "尚未开展完整研究质量/偏倚评级",
+      "display_note": "原始注释涉及QSAR，来源性质未定；暂缓，不宣称已证实为预测值。",
+      "checked_fields": [
+        "原始数据库注释"
+      ],
+      "unresolved_fields": [
+        "数值来自实验还是模型/相关分析"
+      ]
+    }
+  ]
+}
